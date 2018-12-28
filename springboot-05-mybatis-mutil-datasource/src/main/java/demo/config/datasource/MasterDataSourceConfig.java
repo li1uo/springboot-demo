@@ -1,13 +1,11 @@
 package demo.config.datasource;
 
 import com.alibaba.druid.pool.DruidDataSource;
-import demo.config.datasource.properties.MasterDataSourceProperties;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -22,7 +20,6 @@ import javax.sql.DataSource;
  */
 @MapperScan(basePackages = MasterDataSourceConfig.PACKAGE, sqlSessionFactoryRef = "masterSqlSessionFactory")
 @Configuration
-@EnableConfigurationProperties(MasterDataSourceProperties.class)
 public class MasterDataSourceConfig {
 
     /**
@@ -35,21 +32,15 @@ public class MasterDataSourceConfig {
      */
     public static final String MAPPER_LOCATION= "classpath:mapper/master/*.xml";
 
-    @Autowired
-    private MasterDataSourceProperties masterDataSourceProperties;
-
     /**
      * Primary 当一个类有俩个实例时，优先调用此实例
      * @return
      */
     @Primary
     @Bean(name = "masterDataSource")
+    @ConfigurationProperties(prefix = "master.datasource")
     public DataSource masterDataSource(){
         DruidDataSource druidDataSource = new DruidDataSource();
-        druidDataSource.setDriverClassName(masterDataSourceProperties.getDriverClassName());
-        druidDataSource.setUrl(masterDataSourceProperties.getUrl());
-        druidDataSource.setUsername(masterDataSourceProperties.getUserName());
-        druidDataSource.setPassword(masterDataSourceProperties.getPassword());
         return druidDataSource;
     }
 

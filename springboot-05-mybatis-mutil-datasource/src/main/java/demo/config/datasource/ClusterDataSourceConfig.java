@@ -1,13 +1,11 @@
 package demo.config.datasource;
 
 import com.alibaba.druid.pool.DruidDataSource;
-import demo.config.datasource.properties.ClusterDataSourceProperties;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
@@ -21,7 +19,6 @@ import javax.sql.DataSource;
  */
 @MapperScan(basePackages = ClusterDataSourceConfig.PACKAGE, sqlSessionFactoryRef = "clusterSqlSessionFactory")
 @Configuration
-@EnableConfigurationProperties(ClusterDataSourceProperties.class)
 public class ClusterDataSourceConfig {
 
     /**
@@ -34,16 +31,10 @@ public class ClusterDataSourceConfig {
      */
     public static final String MAPPER_LOCATION= "classpath:mapper/cluster/*.xml";
 
-    @Autowired
-    private ClusterDataSourceProperties clusterDataSourceProperties;
-
     @Bean(name = "clusterDataSource")
+    @ConfigurationProperties(prefix = "cluster.datasource")
     public DataSource clusterDataSource() {
         DruidDataSource dataSource = new DruidDataSource();
-        dataSource.setDriverClassName(clusterDataSourceProperties.getDriverClassName());
-        dataSource.setUrl(clusterDataSourceProperties.getUrl());
-        dataSource.setUsername(clusterDataSourceProperties.getUserName());
-        dataSource.setPassword(clusterDataSourceProperties.getPassword());
         return dataSource;
     }
 
