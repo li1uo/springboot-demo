@@ -5,7 +5,7 @@ import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -13,23 +13,15 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 
 import javax.sql.DataSource;
-import java.sql.SQLException;
 
 /**
  * @author LILUO
  * @date 2018/5/13
  */
 @Configuration
-@EnableConfigurationProperties(DruidProperties.class)
 public class DruidConfiguration {
 
     private static final Logger logger = LoggerFactory.getLogger(DruidConfiguration.class);
-
-    public DruidConfiguration(DruidProperties druidProperties) {
-        this.druidProperties = druidProperties;
-    }
-
-    private DruidProperties druidProperties;
 
     @Bean
     public ServletRegistrationBean druidServlet() {
@@ -60,34 +52,11 @@ public class DruidConfiguration {
      * 在同样的DataSource中，首先使用被标注的DataSource
      * @return
      */
-    @Bean
     @Primary
+    @Bean
+    @ConfigurationProperties(prefix = "druid")
     public DataSource dataSource() {
         DruidDataSource datasource = new DruidDataSource();
-        datasource.setUrl(druidProperties.getUrl());
-        datasource.setUsername(druidProperties.getUsername());
-        datasource.setPassword(druidProperties.getPassword());
-        datasource.setDriverClassName(druidProperties.getDriverClassName());
-
-        // configuration
-        datasource.setInitialSize(druidProperties.getInitialSize());
-        datasource.setMinIdle(druidProperties.getMinIdle());
-        datasource.setMaxActive(druidProperties.getMaxActive());
-        datasource.setMaxWait(druidProperties.getMaxWait());
-        datasource.setTimeBetweenEvictionRunsMillis(druidProperties.getTimeBetweenEvictionRunsMillis());
-        datasource.setMinEvictableIdleTimeMillis(druidProperties.getMinEvictableIdleTimeMillis());
-        datasource.setValidationQuery(druidProperties.getValidationQuery());
-        datasource.setTestWhileIdle(druidProperties.isTestWhileIdle());
-        datasource.setTestOnBorrow(druidProperties.isTestOnBorrow());
-        datasource.setTestOnReturn(druidProperties.isTestOnReturn());
-        datasource.setPoolPreparedStatements(druidProperties.isPoolPreparedStatements());
-        datasource.setMaxPoolPreparedStatementPerConnectionSize(druidProperties.getMaxPoolPreparedStatementPerConnectionSize());
-        try {
-            datasource.setFilters(druidProperties.getFilters());
-        } catch (SQLException e) {
-            logger.error("druid configuration initialization filter: " + e);
-        }
-        datasource.setConnectionProperties(druidProperties.getConnectionProperties());
         return datasource;
     }
 }
