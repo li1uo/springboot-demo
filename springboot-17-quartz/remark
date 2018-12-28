@@ -1,0 +1,4 @@
+quarz的使用有俩种方式:
+1.自定义的ScheduleJobFactory继承 AdaptableJobFactory,此时定时任务class 不被spring管理,
+无法使用aop记录定时任务执行情况
+2.自定义的ScheduleJobFactory继承 SpringBeanJobFactory,此时定时任务class　被spring管理

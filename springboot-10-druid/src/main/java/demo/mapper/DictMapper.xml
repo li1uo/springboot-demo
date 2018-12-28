@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="demo.mapper.DictMapper">
+     <resultMap id="baseResultMap" type="demo.domain.DictDO">
+          <id property="dictId" column="dict_id"/>
+          <result property="dictName" column="dict_name"/>
+          <result property="dictType" column="dict_type"/>
+     </resultMap>
+
+     <sql id="baseSql">
+          dict_id,dict_name,dict_type
+     </sql>
+      
+     <insert id="insertDict" parameterType="demo.domain.DictDO" useGeneratedKeys="true" keyProperty="dictId">
+         insert into t_basic_dict
+         (dict_name,dict_type)
+          values
+          (#{dictName},#{dictType})
+     </insert>
+
+     <select id="getDictById" parameterType="java.lang.Long" resultMap="baseResultMap">
+          select
+          <include refid="baseSql"/>
+          from t_basic_dict
+          where dict_id = #{dict_id}
+     </select>
+
+     <update id="updateDict" parameterType="demo.domain.DictDO">
+          update t_basic_dict
+          set dict_name = #{dictName},dict_type = #{dictType}
+          where dict_id = #{dictId}
+     </update>
+
+     <delete id="deleteDict" parameterType="java.lang.Long">
+          delete from t_basic_dict
+          where dict_id = #{dictId}
+     </delete>
+
+     <select id="paginationDict" parameterType="demo.domain.dto.DictDto" resultMap="baseResultMap">
+          select
+          <include refid="baseSql"/>
+          from t_basic_dict
+          order by dict_id
+     </select>
+</mapper>

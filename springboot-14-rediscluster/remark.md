@@ -1,0 +1,2 @@
+1.springboot提供了默认的redisTemplate与stringRedisTemplate
+在RedisAutoConfiguration中
