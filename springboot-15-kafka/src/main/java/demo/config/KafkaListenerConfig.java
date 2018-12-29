@@ -1,5 +1,6 @@
 package demo.config;
 
+import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -16,11 +17,11 @@ public class KafkaListenerConfig {
     private Logger logger = LoggerFactory.getLogger(KafkaListenerConfig.class);
 
     @KafkaListener(topics = {"test"}, groupId = "test-topic")
-    public void receive(String content){
-        logger.error("消费者1: Receive: {}", content);
+    public void receive(ConsumerRecord consumerRecord){
+        logger.error("消费者1: Receive: {}", consumerRecord.value());
     }
 
-    @KafkaListener(topics = {"test"}, groupId = "test-topic-2")
+    /*@KafkaListener(topics = {"test"}, groupId = "test-topic-2")
     public void receive2(String content){
         logger.error("消费者2: Receive: {}", content);
     }
@@ -28,5 +29,5 @@ public class KafkaListenerConfig {
     @KafkaListener(topics = {"test"}, groupId = "test-topic-3")
     public void receive3(String content){
         logger.error("消费者3: Receive: {}", content);
-    }
+    }*/
 }

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.concurrent.ListenableFuture;
 
 import java.util.UUID;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * 定时任务向kafka中传送数据
@@ -24,30 +25,24 @@ public class TaskConfig {
 
     private Logger logger = LoggerFactory.getLogger(TaskConfig.class);
 
+    private static AtomicInteger num = new AtomicInteger(0);
+
     @Autowired
     private KafkaTemplate kafkaTemplate;
 
     /**
      * 定时任务
      */
-    @Scheduled(cron = "0/1 * * * * ?")
+    @Scheduled(cron = "0/3 * * * * ?")
     public void sendMessageToKafka(){
+        if (num.get() >= 3){
+            System.exit(0);
+        }
         String message = UUID.randomUUID().toString();
         ListenableFuture future = kafkaTemplate.send("test", message + "_1");
         /*future.addCallback(o ->
                 logger.debug("send-消息发送成功：" + message), throwable -> logger.debug("消息发送失败：" + message)
         );*/
-        ListenableFuture future2 = kafkaTemplate.send("test", message + "_2");
-        /*future2.addCallback(o ->
-                logger.debug("send-消息发送成功：" + message), throwable -> logger.debug("消息发送失败：" + message)
-        );*/
-        ListenableFuture future3 = kafkaTemplate.send("test", message + "_3");
-        /*future3.addCallback(o ->
-                logger.debug("send-消息发送成功：" + message), throwable -> logger.debug("消息发送失败：" + message)
-        );*/
-        ListenableFuture future4 = kafkaTemplate.send("test", message + "_4");
-        /*future4.addCallback(o ->
-                logger.debug("send-消息发送成功：" + message), throwable -> logger.debug("消息发送失败：" + message)
-        );*/
+        num.addAndGet(1);
     }
 }
