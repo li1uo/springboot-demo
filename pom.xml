@@ -19,17 +19,14 @@
 
   <modules>
       <module>springboot-02-jpa</module>
-      <module>springboot-03-jpa-redis</module>
       <module>springboot-04-mybatis</module>
       <module>springboot-05-mybatis-mutil-datasource</module>
-      <module>springboot-06-mybatis-redis</module>
       <module>springboot-07-properties</module>
-      <module>springboot-08-global-handler</module>
       <module>springboot-09-mybatisplus</module>
       <module>springboot-10-druid</module>
       <module>springboot-11-shiro</module>
       <module>springboot-12-websocket</module>
-      <module>springboot-13-activemq</module>
+      <module>springboot-13-jms</module>
       <module>springboot-14-rediscluster</module>
       <module>springboot-15-kafka</module>
       <module>springboot-16-swagger</module>

@@ -4,11 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>demo.springboot</groupId>
-    <artifactId>springboot-13-activemq</artifactId>
+    <artifactId>springboot-13-jms</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>activemq</name>
+    <name>jms</name>
     <description>springboot使用activemq</description>
 
     <parent>
