@@ -26,4 +26,10 @@ public class RabbitmqListenerConfig {
     public void receiveMsg(Message message){
         logger.debug("接收到 {}", message.toString());
     }
+
+
+    @RabbitListener(queues = "test-topic-2")
+    public void receiveTopicMsg(Message message){
+        logger.debug("接收到 {}", message.toString());
+    }
 }

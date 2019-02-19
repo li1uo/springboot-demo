@@ -27,4 +27,15 @@ public class IndexController {
         amqpTemplate.convertAndSend("amq.direct", IndexController.QUEUE, "测试消息");
         return "发送成功";
     }
+
+    /**
+     * 发布订阅信息
+     *
+     * @return
+     */
+    @PostMapping(value = "/topic")
+    public String sendTopicMsg(){
+        amqpTemplate.convertAndSend("amq.fanout", "", "测试消息");
+        return "订阅成功";
+    }
 }

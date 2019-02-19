@@ -30,6 +30,7 @@
       <module>springboot-15-kafka</module>
       <module>springboot-16-swagger</module>
       <module>springboot-17-quartz</module>
+      <module>springboot-18-rabbitmq</module>
   </modules>
 
 </project>

@@ -12,3 +12,10 @@
   - topic  根据表达式放入
   - fanout 放入到该交换机的所有队列中(相当于发布/订阅模式)
   - header 
+  
+3.rabbitmq发送/消费数据
+   
+  - coverAndSend如果是指向了fanout类型的交换机 似乎不需要指定队列名
+  - 每个队列在创建时会默认新增一个direct的归属交换机,
+  `@RabbitListener(queues = "test-topic-2")`  即可
+  
