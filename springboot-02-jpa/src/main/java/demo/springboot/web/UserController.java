@@ -38,4 +38,16 @@ public class UserController {
     public List<UserDO> getUserList(){
        return userService.listUser();
     }
+
+    @RequestMapping(value = "/create",method = RequestMethod.POST)
+    public String insertUser(UserDO userDO){
+        userService.insertUser(userDO);
+        return "新增成功";
+    }
+
+    @RequestMapping(value = "modify")
+    public String modifyUser(UserDO userDO){
+        userService.updateUser(userDO);
+        return "修改成功!";
+    }
 }

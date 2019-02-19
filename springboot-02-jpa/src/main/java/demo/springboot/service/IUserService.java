@@ -16,5 +16,22 @@ public interface IUserService {
      */
     UserDO getUserById(Long userId);
 
+    /**
+     * 获取用户信息列表
+     * @return
+     */
     List<UserDO> listUser();
+
+    /**
+     * 新增用户
+     * @param userDO
+     */
+    void insertUser(UserDO userDO);
+
+    /**
+     * 更新用户信息
+     * @param userDO
+     * @return
+     */
+    UserDO updateUser(UserDO userDO);
 }

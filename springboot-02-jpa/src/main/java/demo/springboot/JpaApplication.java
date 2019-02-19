@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * @author liluo
+ * @author LILUO
  */
 @SpringBootApplication
 public class JpaApplication {

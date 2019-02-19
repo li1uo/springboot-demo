@@ -21,7 +21,9 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/iconfont")
 public class IconfontController {
+
     public static Logger logger = LoggerFactory.getLogger(IconfontController.class);
+
     @Autowired
     private IIconFontService iIconFontService;
 
@@ -31,7 +33,7 @@ public class IconfontController {
      * @param pageable
      * @return
      */
-    @RequestMapping(value = "/page",method = RequestMethod.GET)
+    @RequestMapping(value = "/page", method = RequestMethod.GET)
     public List<IconFontDO> findIconfontByPage(Pageable pageable){
         return iIconFontService.findByPage(pageable).getContent();
     }
