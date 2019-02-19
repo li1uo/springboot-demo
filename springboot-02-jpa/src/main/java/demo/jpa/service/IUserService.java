@@ -1,6 +1,6 @@
-package demo.springboot.service;
+package demo.jpa.service;
 
-import demo.springboot.domain.UserDO;
+import demo.jpa.domain.UserDO;
 
 import java.util.List;
 

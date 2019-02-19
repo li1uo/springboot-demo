@@ -1,7 +1,7 @@
-package demo.springboot.web;
+package demo.jpa.web;
 
-import demo.springboot.domain.UserDO;
-import demo.springboot.service.IUserService;
+import demo.jpa.domain.UserDO;
+import demo.jpa.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

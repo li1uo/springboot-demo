@@ -1,6 +1,6 @@
-package demo.springboot.repository;
+package demo.jpa.repository;
 
-import demo.springboot.domain.IconFontDO;
+import demo.jpa.domain.IconFontDO;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

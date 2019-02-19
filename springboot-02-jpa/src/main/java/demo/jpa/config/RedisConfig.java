@@ -1,4 +1,4 @@
-package demo.springboot.config;
+package demo.jpa.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.cache.CacheManager;

@@ -1,8 +1,8 @@
-package demo.springboot.service.impl;
+package demo.jpa.service.impl;
 
-import demo.springboot.domain.UserDO;
-import demo.springboot.repository.UserRepository;
-import demo.springboot.service.IUserService;
+import demo.jpa.domain.UserDO;
+import demo.jpa.repository.UserRepository;
+import demo.jpa.service.IUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

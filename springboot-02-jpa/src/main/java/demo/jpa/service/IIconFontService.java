@@ -1,6 +1,6 @@
-package demo.springboot.service;
+package demo.jpa.service;
 
-import demo.springboot.domain.IconFontDO;
+import demo.jpa.domain.IconFontDO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

@@ -1,4 +1,4 @@
-package demo.springboot.domain;
+package demo.jpa.domain;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

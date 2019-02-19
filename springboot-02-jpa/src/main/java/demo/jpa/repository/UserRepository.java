@@ -1,6 +1,6 @@
-package demo.springboot.repository;
+package demo.jpa.repository;
 
-import demo.springboot.domain.UserDO;
+import demo.jpa.domain.UserDO;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

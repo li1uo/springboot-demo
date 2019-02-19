@@ -1,8 +1,8 @@
-package demo.springboot.service.impl;
+package demo.jpa.service.impl;
 
-import demo.springboot.domain.IconFontDO;
-import demo.springboot.repository.IconFontRepository;
-import demo.springboot.service.IIconFontService;
+import demo.jpa.repository.IconFontRepository;
+import demo.jpa.service.IIconFontService;
+import demo.jpa.domain.IconFontDO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
