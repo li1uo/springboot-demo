@@ -18,7 +18,6 @@
   </properties>
 
   <modules>
-      <module>springboot-01-quickstart</module>
       <module>springboot-02-jpa</module>
       <module>springboot-03-jpa-redis</module>
       <module>springboot-04-mybatis</module>
