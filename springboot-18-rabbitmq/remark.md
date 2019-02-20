@@ -18,4 +18,5 @@
   - coverAndSend如果是指向了fanout类型的交换机 似乎不需要指定队列名
   - 每个队列在创建时会默认新增一个direct的归属交换机,
   `@RabbitListener(queues = "test-topic-2")`  即可
+  - springboot可以设置rabbitmq listener重试次数 在消费失败后进行重试,但是仍需要设置死信队列,否则重试之后数据将会进行抛弃
   

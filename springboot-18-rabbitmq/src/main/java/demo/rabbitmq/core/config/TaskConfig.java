@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
+import java.util.UUID;
+
 /**
  * @author LILUO
  * @date 2019/02/19
@@ -18,8 +20,8 @@ public class TaskConfig {
     @Autowired
     private AmqpTemplate amqpTemplate;
 
-    @Scheduled(cron = "0/10 * * * * *")
+    @Scheduled(cron = "0/5 * * * * *")
     public void sendQueueMsg(){
-        amqpTemplate.convertAndSend("amq.direct", IndexController.QUEUE, "测试信息");
+        amqpTemplate.convertAndSend("amq.direct", IndexController.QUEUE, UUID.randomUUID().toString());
     }
 }

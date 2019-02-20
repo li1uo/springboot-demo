@@ -22,13 +22,13 @@ public class RabbitmqListenerConfig {
      * 接收rabbitmq的数据
      * @param message
      */
-    @RabbitListener(bindings = @QueueBinding(value = @Queue("default-queue"), exchange = @Exchange("amq.direct"), key = {"default-queue"}))
-    public void receiveMsg(Message message){
+    @RabbitListener(queues = "default-queue")
+    public void receiveMsg(Message message) {
         logger.debug("接收到 {}", message.toString());
     }
 
 
-    @RabbitListener(queues = "test-topic-2")
+    @RabbitListener(queues = "test-topic-1")
     public void receiveTopicMsg(Message message){
         logger.debug("接收到 {}", message.toString());
     }

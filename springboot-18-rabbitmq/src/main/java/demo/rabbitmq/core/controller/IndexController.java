@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.UUID;
+
 /**
  * @author LILUO
  * @date 2019/02/19
@@ -24,7 +26,7 @@ public class IndexController {
 
     @PostMapping(value = "/send")
     public @ResponseBody String sendMsg(){
-        amqpTemplate.convertAndSend("amq.direct", IndexController.QUEUE, "测试消息");
+        amqpTemplate.convertAndSend("amq.direct", IndexController.QUEUE, UUID.randomUUID().toString());
         return "发送成功";
     }
 
