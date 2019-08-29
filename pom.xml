@@ -31,6 +31,7 @@
       <module>springboot-16-swagger</module>
       <module>springboot-17-quartz</module>
       <module>springboot-18-rabbitmq</module>
+      <module>springboot-19-atomikos</module>
   </modules>
 
 </project>

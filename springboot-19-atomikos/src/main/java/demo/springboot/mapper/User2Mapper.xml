@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="demo.springboot.mapper.User2Mapper">
+
+     <insert id="insertUser" parameterType="demo.springboot.domain.UserDO" useGeneratedKeys="true" keyProperty="userId">
+          insert into test.t_user
+          (user_name, user_password, create_time, create_by, user_status, is_deleted)
+          values
+          (#{userName}, #{userPassword}, #{createTime}, #{createBy}, 1, 1)
+     </insert>
+</mapper>
