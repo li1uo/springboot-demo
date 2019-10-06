@@ -26,7 +26,6 @@
       <module>springboot-10-druid</module>
       <module>springboot-11-shiro</module>
       <module>springboot-12-websocket</module>
-      <module>springboot-13-jms</module>
       <module>springboot-15-kafka</module>
       <module>springboot-16-swagger</module>
       <module>springboot-17-quartz</module>
