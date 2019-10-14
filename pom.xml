@@ -18,7 +18,6 @@
   </properties>
 
   <modules>
-      <module>springboot-02-jpa</module>
       <module>springboot-04-mybatis</module>
       <module>springboot-05-mybatis-mutil-datasource</module>
       <module>springboot-07-properties</module>
