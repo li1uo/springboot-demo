@@ -20,10 +20,6 @@
   <modules>
       <module>springboot-04-mybatis</module>
       <module>springboot-05-mybatis-mutil-datasource</module>
-      <module>springboot-07-properties</module>
-      <module>springboot-09-mybatisplus</module>
-      <module>springboot-10-druid</module>
-      <module>springboot-11-shiro</module>
       <module>springboot-12-websocket</module>
       <module>springboot-15-kafka</module>
       <module>springboot-16-swagger</module>
