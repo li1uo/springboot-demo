@@ -15,6 +15,12 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+
+        <spring.boot.demo.version>1.0-SNAPSHOT</spring.boot.demo.version>
+        <spring.boot.version>2.2.1.RELEASE</spring.boot.version>
+        <spring.platform.version>Cairo-SR8</spring.platform.version>
+        <nacos.config.version>0.2.3</nacos.config.version>
+        <mybatis.version>2.1.1</mybatis.version>
     </properties>
 
     <modules>
@@ -29,4 +35,34 @@
         <module>springboot-21-nacos</module>
     </modules>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring.boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.spring.platform</groupId>
+                <artifactId>platform-bom</artifactId>
+                <version>${spring.platform.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba.boot</groupId>
+                <artifactId>nacos-config-spring-boot-starter</artifactId>
+                <version>${nacos.config.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>
