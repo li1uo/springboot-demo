@@ -4,7 +4,7 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/ssmshiro?characterEncoding=utf8&useSSL=false
     username: root
     password: root
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
 ## 日志等级
 logging:
   level:
