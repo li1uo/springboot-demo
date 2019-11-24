@@ -26,6 +26,7 @@
       <module>springboot-17-quartz</module>
       <module>springboot-18-rabbitmq</module>
       <module>springboot-19-atomikos</module>
+      <module>springboot-21-nacos</module>
   </modules>
 
 </project>
