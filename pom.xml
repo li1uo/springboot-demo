@@ -18,24 +18,24 @@
         <maven.plugin.version>3.8.1</maven.plugin.version>
 
         <spring.boot.demo.version>0.0.1.RELEASE</spring.boot.demo.version>
-        <spring.boot.version>2.2.1.RELEASE</spring.boot.version>
+        <spring.boot.version>2.1.11.RELEASE</spring.boot.version>
         <spring.platform.version>Cairo-SR8</spring.platform.version>
         <nacos.config.version>0.2.3</nacos.config.version>
         <mybatis.version>2.1.1</mybatis.version>
-        <druid.version>1.0.18</druid.version>
+        <druid.version>1.1.21</druid.version>
         <swagger.version>2.9.2</swagger.version>
     </properties>
 
     <modules>
-        <module>springboot-04-mybatis</module>
-        <module>springboot-05-mybatis-mutil-datasource</module>
-        <module>springboot-12-websocket</module>
-        <module>springboot-15-kafka</module>
-        <module>springboot-16-swagger</module>
-        <module>springboot-17-quartz</module>
-        <module>springboot-18-rabbitmq</module>
-        <module>springboot-19-atomikos</module>
-        <module>springboot-21-nacos</module>
+        <module>springboot-01-mybatis</module>
+        <module>springboot-02-mutil-datasource</module>
+        <module>springboot-03-websocket</module>
+        <module>springboot-04-kafka</module>
+        <module>springboot-05-swagger</module>
+        <module>springboot-06-quartz</module>
+        <module>springboot-07-rabbitmq</module>
+        <module>springboot-08-atomikos</module>
+        <module>springboot-09-nacos</module>
     </modules>
 
     <dependencyManagement>
@@ -85,6 +85,14 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 
     <build>
         <!-- 将src目录下的xml放到编译文件中 -->
