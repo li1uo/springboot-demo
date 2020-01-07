@@ -37,6 +37,7 @@
         <module>springboot-07-rabbitmq</module>
         <module>springboot-08-atomikos</module>
         <module>springboot-09-nacos</module>
+        <module>springboot-10-jwt</module>
     </modules>
 
     <dependencyManagement>
@@ -89,6 +90,13 @@
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>2.2.0</version>
+            </dependency>
+
+            <!-- JWT -->
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt</artifactId>
+                <version>0.9.1</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
