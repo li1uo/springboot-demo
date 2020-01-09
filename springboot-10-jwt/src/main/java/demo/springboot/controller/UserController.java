@@ -1,5 +1,7 @@
 package demo.springboot.controller;
 
+import demo.springboot.config.annotation.PreAuth;
+import demo.springboot.constants.RoleConstant;
 import demo.springboot.model.R;
 import demo.springboot.model.UserInfo;
 import demo.springboot.utils.SecureUtil;
@@ -37,6 +39,7 @@ public class UserController {
      *
      * @return
      */
+    @PreAuth(RoleConstant.HAS_ROLE_USER)
     @GetMapping("/user/info")
     public UserInfo info(){
         return SecureUtil.getUser();

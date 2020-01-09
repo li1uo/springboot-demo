@@ -18,4 +18,14 @@ public class UserInfo {
      * 用户名
      */
     private String userName;
+
+    /**
+     * 角色id(,分割)
+     */
+    private String roleId;
+
+    /**
+     * 角色集合(,分割)
+     */
+    private String roleName;
 }
