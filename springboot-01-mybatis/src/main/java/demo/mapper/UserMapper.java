@@ -7,10 +7,11 @@ import org.springframework.stereotype.Repository;
  * @author LILUO
  * @date 2018/5/9
  */
-@Repository
 public interface UserMapper {
+
      /**
-      * 根据id获取用户信息
+      * 根据id查询
+      *
       * @param userId
       * @return
       */

@@ -10,7 +10,8 @@ import demo.domain.UserDO;
 public interface IUserService {
 
      /**
-      * 根据id获取用户信息
+      * 根据id查询
+      *
       * @param userId
       * @return
       */

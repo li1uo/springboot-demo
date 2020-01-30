@@ -38,6 +38,8 @@
         <module>springboot-08-atomikos</module>
         <module>springboot-09-nacos</module>
         <module>springboot-10-jwt</module>
+        <module>springboot-11-elasticsearch</module>
+        <module>springboot-common</module>
     </modules>
 
     <dependencyManagement>

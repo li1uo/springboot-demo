@@ -8,13 +8,13 @@
           <result property="userPassword" column="user_password"/>
      </resultMap>
 
-     <sql id="baseSql">
-          user_id,user_name,user_password
+     <sql id="baseFiled">
+          user_id, user_name, user_password
      </sql>
 
      <select id="getUserById" parameterType="java.lang.Long" resultMap="baseResultMap">
           select
-          <include refid="baseSql"/>
+          <include refid="baseFiled"/>
           from t_user
           where user_id = #{userId}
      </select>
