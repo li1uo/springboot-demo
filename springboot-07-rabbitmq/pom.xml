@@ -28,5 +28,17 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>demo.springboot</groupId>
+            <artifactId>springboot-common</artifactId>
+            <version>0.0.1.RELEASE</version>
+        </dependency>
     </dependencies>
 </project>

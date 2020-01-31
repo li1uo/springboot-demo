@@ -17,7 +17,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitmqListenerConfig {
 
-    private Logger logger = LoggerFactory.getLogger(RabbitmqListenerConfig.class);
+    public static final Logger logger = LoggerFactory.getLogger(RabbitmqListenerConfig.class);
 
     /**
      * 接收rabbitmq的数据

@@ -19,7 +19,7 @@
         <java.version>1.8</java.version>
 
         <springboot.demo.version>0.0.1.RELEASE</springboot.demo.version>
-        <spring.boot.version>2.1.11.RELEASE</spring.boot.version>
+        <spring.boot.version>2.2.4.RELEASE</spring.boot.version>
         <spring.platform.version>Cairo-SR8</spring.platform.version>
         <nacos.config.version>0.2.3</nacos.config.version>
         <mybatis.version>2.1.1</mybatis.version>
