@@ -1,6 +1,7 @@
 package demo.springboot.model;
 
 import lombok.Data;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 
 import java.io.Serializable;
@@ -9,13 +10,43 @@ import java.io.Serializable;
  * @author LILUO
  * @date 2020/01/31
  */
-@Document(indexName = "storage")
+@Document(indexName = "storage", type = "_doc")
 @Data
 public class Storage implements Serializable {
 
+    /**
+     * 商品Id
+     */
+    @Id
     private Long id;
 
-    private String name;
+    /**
+     * 商户id
+     */
+    private Long merchantId;
 
-    private Long number;
+    /**
+     * 商户名
+     */
+    private String merchantName;
+
+    /**
+     * 商品名称
+     */
+    private String goodName;
+
+    /**
+     * 库存数量
+     */
+    private Long count;
+
+    /**
+     * 销量
+     */
+    private Long sales;
+
+    /**
+     * 备注
+     */
+    private String remark;
 }

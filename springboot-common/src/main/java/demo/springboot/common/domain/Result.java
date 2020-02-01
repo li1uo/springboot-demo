@@ -100,4 +100,8 @@ public class Result<T> implements Serializable {
     public static <T> Result<T> data(T t){
         return new Result<>(t);
     }
+
+    public static Result status(boolean flag){
+        return flag == true ? new Result(ResultCode.SUCCESS) : new Result(ResultCode.PARAMETER_ERROR);
+    }
 }
