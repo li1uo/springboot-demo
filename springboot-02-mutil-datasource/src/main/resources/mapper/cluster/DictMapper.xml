@@ -15,6 +15,6 @@
      <select id="listDict"  resultMap="baseResultMap">
           select
           <include refid="baseSql"/>
-          from t_basic_dict
+          from system_dict
      </select>
 </mapper>

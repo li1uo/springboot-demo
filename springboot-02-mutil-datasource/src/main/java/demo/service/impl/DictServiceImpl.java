@@ -1,5 +1,6 @@
 package demo.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import demo.domain.DictDO;
 import demo.mapper.cluster.DictMapper;
 import demo.service.IDictService;
@@ -13,7 +14,7 @@ import java.util.List;
  * @date 2018/5/10
  */
 @Service("dictService")
-public class DictServiceImpl implements IDictService{
+public class DictServiceImpl extends ServiceImpl<DictMapper, DictDO> implements IDictService{
 
     @Autowired
     private DictMapper dictMapper;

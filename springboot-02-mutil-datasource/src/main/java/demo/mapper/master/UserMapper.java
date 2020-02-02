@@ -1,16 +1,17 @@
 package demo.mapper.master;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import demo.domain.UserDO;
-import org.springframework.stereotype.Repository;
 
 /**
  * @author LILUO
  * @date 2018/5/9
  */
-@Repository
-public interface UserMapper {
+public interface UserMapper extends BaseMapper<UserDO> {
+
      /**
       * 用户集合
+      *
       * @param userId
       * @return
       */

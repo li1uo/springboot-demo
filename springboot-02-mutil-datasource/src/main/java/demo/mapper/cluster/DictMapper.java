@@ -1,7 +1,7 @@
 package demo.mapper.cluster;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import demo.domain.DictDO;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -9,10 +9,11 @@ import java.util.List;
  * @author LILUO
  * @date 2018/5/10
  */
-@Repository
-public interface DictMapper {
+public interface DictMapper extends BaseMapper<DictDO> {
+
      /**
       * 字典集合
+      *
       * @return
       */
      List<DictDO> listDict();
