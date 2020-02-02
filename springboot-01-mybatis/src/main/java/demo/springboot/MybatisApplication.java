@@ -1,15 +1,13 @@
-package demo;
+package demo.springboot;
 
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * @author LILUO
- * @date 2018/5/9
+ * @date 2020/02/02
  */
 @SpringBootApplication
-@MapperScan("demo.mapper")
 public class MybatisApplication {
 
 	public static void main(String[] args) {

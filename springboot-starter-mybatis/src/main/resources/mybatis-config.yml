@@ -1,0 +1,27 @@
+mybatis-plus:
+  # 生成别名设置
+  type-aliases-package: demo.springboot.*.domain
+  # mybatis扫描mapper.xml
+  mapperLocations: /demo/springboot/*/mapper/*Mapper.xml
+  # mybatis扫描mapper.xml(扫描报错  需要验证 此项是否为必加项、为空时是否会扫描mapperScanner位置)
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+  # ID主键设置
+  globalConfig:
+    # 关闭MP3.0自带的banner
+    banner: false
+    db-config:
+      # 主键类型  0:"数据库ID自增", 1:"不操作", 2:"用户输入ID",3:"数字型snowflake", 4:"全局唯一ID UUID", 5:"字符串型snowflake";
+      id-type: auto
+      # 字段策略
+      insert-strategy: not_null
+      update-strategy: not_null
+      select-strategy: not_empty
+      # 驼峰下划线转换
+      table-underline: true
+      # 逻辑删除配置
+      # 逻辑删除全局值（1表示已删除，这也是Mybatis Plus的默认配置）
+      logic-delete-value: 1
+      # 逻辑未删除全局值（0表示未删除，这也是Mybatis Plus的默认配置）
+      logic-not-delete-value: 0

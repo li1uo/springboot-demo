@@ -40,6 +40,7 @@
         <module>springboot-10-jwt</module>
         <module>springboot-11-elasticsearch</module>
         <module>springboot-common</module>
+        <module>springboot-starter-mybatis</module>
     </modules>
 
     <dependencyManagement>
@@ -91,7 +92,7 @@
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
-                <version>2.2.0</version>
+                <version>3.2.0</version>
             </dependency>
 
             <!-- JWT -->
