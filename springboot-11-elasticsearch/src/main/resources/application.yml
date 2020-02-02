@@ -2,4 +2,6 @@ logging:
   level:
     org:
       springframework:
-        web: debug
+        web: info
+    demo:
+      springboot: debug

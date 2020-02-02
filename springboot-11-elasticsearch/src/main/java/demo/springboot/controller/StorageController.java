@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.IteratorUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.elasticsearch.index.query.Operator;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.sort.SortBuilder;
@@ -77,11 +78,27 @@ public class StorageController {
         if (StringUtils.isBlank(pageDto.getSearchContent())){
             queryBuilder = QueryBuilders.matchAllQuery();
         }else{
-            queryBuilder = QueryBuilders.multiMatchQuery(pageDto.getSearchContent(), "goodName", "merchantName");
-        }
-        // SortBuilder sortBuilder = SortBuilders.fieldSort("sales").order(SortOrder.DESC);
-        searchQuery = new NativeSearchQueryBuilder().withQuery(queryBuilder).withPageable(pageable).build();
+            // 精准匹配
+            //queryBuilder = QueryBuilders.termQuery("goodName", pageDto.getSearchContent());
 
+            // 多字段搜索
+            //queryBuilder = QueryBuilders.multiMatchQuery(pageDto.getSearchContent(), "goodName", "merchantName");
+
+            // matchQuery会对分词进行搜索 搜索词部分匹配即可命中
+            queryBuilder = QueryBuilders.matchQuery("goodName", pageDto.getSearchContent());
+
+            // matchPhraseQuery会对分词进行搜索, 搜索词全部匹配才会命中结果
+            //queryBuilder = QueryBuilders.matchPhraseQuery("goodName", pageDto.getSearchContent());
+        }
+
+        searchQuery = new NativeSearchQueryBuilder().withQuery(queryBuilder).withPageable(pageable)
+                // 按照_score进行排序
+                .withSort(SortBuilders.scoreSort().order(SortOrder.DESC))
+                // 按照sales字段进行排序
+                .withSort(SortBuilders.fieldSort("sales").order(SortOrder.DESC))
+                .build();
+
+        log.debug("search Dql: {}", searchQuery.getQuery().toString());
         Page<Storage> page = elasticsearchRestTemplate.queryForPage(searchQuery, Storage.class);
         return Result.data(page);
     }
