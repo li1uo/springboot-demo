@@ -4,15 +4,13 @@ import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 
-import java.io.Serializable;
-
 /**
  * @author LILUO
  * @date 2020/01/31
  */
 @Document(indexName = "storage", type = "_doc")
 @Data
-public class Storage implements Serializable {
+public class Storage extends BaseEntity {
 
     /**
      * 商品Id

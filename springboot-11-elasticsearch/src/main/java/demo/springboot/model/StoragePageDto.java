@@ -1,6 +1,6 @@
 package demo.springboot.model;
 
-import demo.springboot.common.domain.PageParam;
+import demo.springboot.common.domain.elasticsearch.PageParam;
 import lombok.Data;
 
 /**

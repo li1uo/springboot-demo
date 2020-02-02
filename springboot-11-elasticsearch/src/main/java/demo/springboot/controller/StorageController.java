@@ -148,8 +148,8 @@ public class StorageController {
      * @param id
      * @return
      */
-    @PostMapping("/remove")
-    public Result remove(Long id){
+    @PostMapping("/remove/{id}")
+    public Result remove(@PathVariable Long id){
         storageRepository.deleteById(id);
         return Result.success();
     }

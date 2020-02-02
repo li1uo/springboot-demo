@@ -1,4 +1,4 @@
-package demo.springboot.common.domain;
+package demo.springboot.common.domain.elasticsearch;
 
 import lombok.Data;
 
