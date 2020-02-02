@@ -13,7 +13,7 @@ import org.springframework.context.annotation.PropertySource;
  * @author LILUO
  * @date 2020/02/02
  */
-@MapperScan(basePackages = "demo.springboot.mapper")
+@MapperScan(basePackages = "demo.springboot.**.mapper")
 @PropertySource(value = "classpath:/mybatis-config.yml")
 @Configuration
 public class MybatisConfig {

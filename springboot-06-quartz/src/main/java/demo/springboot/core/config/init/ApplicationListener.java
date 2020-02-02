@@ -2,7 +2,6 @@ package demo.springboot.core.config.init;
 
 import demo.springboot.core.config.schedule.ScheduleUtil;
 import demo.springboot.core.domain.ScheduleJobDto;
-import demo.springboot.core.exception.ServiceException;
 import demo.springboot.core.service.ITaskService;
 import org.quartz.CronTrigger;
 import org.quartz.Scheduler;
@@ -32,7 +31,7 @@ public class ApplicationListener implements CommandLineRunner {
     private ITaskService taskService;
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
         // 应用启动之后执行所有可执行的的任务
         List<ScheduleJobDto> scheduleJobList = taskService.listTask();
         for (ScheduleJobDto scheduleJob : scheduleJobList) {
@@ -44,7 +43,7 @@ public class ApplicationListener implements CommandLineRunner {
                     ScheduleUtil.updateScheduleJob(scheduleBean, scheduleJob);
                 }
                 logger.info("Startup {}-{} success", scheduleJob.getJobGroup(), scheduleJob.getJobName());
-            } catch (ServiceException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }

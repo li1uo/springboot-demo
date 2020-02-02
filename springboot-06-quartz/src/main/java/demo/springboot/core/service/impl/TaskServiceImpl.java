@@ -1,9 +1,7 @@
 package demo.springboot.core.service.impl;
 
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import demo.springboot.core.config.annotation.TaskMonitor;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import demo.springboot.core.domain.ScheduleJobDto;
-import demo.springboot.core.exception.ServiceException;
 import demo.springboot.core.mapper.TaskMapper;
 import demo.springboot.core.service.ITaskService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,31 +15,30 @@ import java.util.List;
  * @date 2018/11/14
  */
 @Service("taskService")
-public class TaskServiceImpl implements ITaskService {
+public class TaskServiceImpl extends ServiceImpl<TaskMapper, ScheduleJobDto> implements ITaskService {
 
     @Autowired
     private TaskMapper taskMapper;
 
     @Override
-    public ScheduleJobDto getTaskById(Long taskId) throws ServiceException {
+    public ScheduleJobDto getTaskById(Long taskId) {
         return taskMapper.selectById(taskId);
     }
 
     @Override
-    public List<ScheduleJobDto> listTask() throws ServiceException {
-        return taskMapper.selectList(new EntityWrapper<>());
+    public List<ScheduleJobDto> listTask() {
+        return taskMapper.selectList(null);
     }
 
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public int insertTask(ScheduleJobDto scheduleJobDto) throws ServiceException {
-        taskMapper.insert(scheduleJobDto);
-        return 0;
+    public int insertTask(ScheduleJobDto scheduleJobDto) {
+        return taskMapper.insert(scheduleJobDto);
     }
 
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public int updateTask(ScheduleJobDto scheduleJobDto) throws ServiceException {
+    public int updateTask(ScheduleJobDto scheduleJobDto) {
         ScheduleJobDto dto = taskMapper.selectById(scheduleJobDto.getTaskId());
         if (dto == null || dto.getStatus() == 0){
             return 1;
@@ -52,7 +49,7 @@ public class TaskServiceImpl implements ITaskService {
 
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public int deleteTask(Long taskId) throws ServiceException {
+    public int deleteTask(Long taskId) {
         ScheduleJobDto dto = taskMapper.selectById(taskId);
         if (dto == null || dto.getStatus() == 0){
             return 1;
@@ -64,7 +61,7 @@ public class TaskServiceImpl implements ITaskService {
 
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public int updateTaskStatus(Long taskId, Integer status) throws ServiceException {
+    public int updateTaskStatus(Long taskId, Integer status) {
         ScheduleJobDto dto = taskMapper.selectById(taskId);
         if (dto == null || dto.getStatus() == 0){
             return 1;

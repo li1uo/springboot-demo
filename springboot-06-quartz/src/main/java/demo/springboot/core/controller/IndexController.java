@@ -2,7 +2,6 @@ package demo.springboot.core.controller;
 
 import demo.springboot.core.config.schedule.ScheduleUtil;
 import demo.springboot.core.domain.ScheduleJobDto;
-import demo.springboot.core.exception.ServiceException;
 import demo.springboot.core.service.ITaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
@@ -31,10 +30,9 @@ public class IndexController {
      * 查看任务列表
      * @param request
      * @return
-     * @throws ServiceException
      */
     @GetMapping(value = "/index")
-    public String index(HttpServletRequest request) throws ServiceException {
+    public String index(HttpServletRequest request) throws Exception {
         // 获取所有task信息
         List<ScheduleJobDto> list = taskService.listTask();
         request.setAttribute("taskList", list);
@@ -45,10 +43,10 @@ public class IndexController {
      * 暂停任务
      * @param taskId
      * @return
-     * @throws ServiceException
+     * @throws Exception
      */
     @RequestMapping(value = "/pause/{taskId}")
-    public String pause(@PathVariable Long taskId) throws ServiceException {
+    public String pause(@PathVariable Long taskId) throws Exception {
         // 暂停任务
         taskService.updateTaskStatus(taskId, -1);
         ScheduleUtil.pauseJob(schedulerFactoryBean.getScheduler(), taskService.getTaskById(taskId));
@@ -59,10 +57,10 @@ public class IndexController {
      * 恢复任务
      * @param taskId
      * @return
-     * @throws ServiceException
+     * @throws Exception
      */
     @RequestMapping(value = "/resume/{taskId}")
-    public String resume(@PathVariable Long taskId) throws ServiceException {
+    public String resume(@PathVariable Long taskId) throws Exception {
         // 恢复任务
         taskService.updateTaskStatus(taskId, 1);
         ScheduleUtil.resumeJob(schedulerFactoryBean.getScheduler(), taskService.getTaskById(taskId));
