@@ -1,4 +1,4 @@
-package demo.springboot.core.config;
+package demo.springboot.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -11,6 +11,7 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 /**
  *
  * AbstractWebSocketMessageBrokerConfigurer方法已过时(java8中定义了实现类的默认方法)
+ *
  * @author LILUO
  * @date 2018/7/2
  */

@@ -1,6 +1,6 @@
-package demo.springboot.core.config;
+package demo.springboot.config;
 
-import demo.springboot.core.domain.WebsocketUserVO;
+import demo.springboot.domain.WebsocketPrincipal;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
@@ -15,6 +15,7 @@ import java.util.Map;
 
 /**
  * 消息拦截器
+ *
  * @author LILUO
  * @date 2018/7/2
  */
@@ -39,9 +40,9 @@ public class UserInterceptor implements ChannelInterceptor {
                 Object name = ((Map) raw).get("name");
                 if (name instanceof LinkedList) {
                     // 设置当前访问器的认证用户
-                    accessor.setUser(new WebsocketUserVO(((LinkedList) name).get(0).toString()));
+                    accessor.setUser(new WebsocketPrincipal(((LinkedList) name).get(0).toString()));
                 }else{
-                    accessor.setUser(new WebsocketUserVO(name.toString()));
+                    accessor.setUser(new WebsocketPrincipal(name.toString()));
                 }
             }
         }

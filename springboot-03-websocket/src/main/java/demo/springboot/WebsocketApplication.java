@@ -1,11 +1,12 @@
-package demo.springboot.core;
+package demo.springboot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * springboot启动层
- * @author liluo
+ *
+ * @author LILUO
+ * @date 2020/02/02
  */
 @SpringBootApplication
 public class WebsocketApplication {

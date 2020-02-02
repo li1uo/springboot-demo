@@ -1,5 +1,6 @@
-package demo.springboot.core.controller;
+package demo.springboot.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +14,9 @@ import javax.servlet.http.HttpServletRequest;
  * @author LILUO
  * @date 2018/7/2
  */
+@Slf4j
 @Controller
 public class IndexController {
-
-    private static final Logger log = LoggerFactory.getLogger(IndexController.class);
 
     @Autowired
     private SimpUserRegistry simpUserRegistry;
