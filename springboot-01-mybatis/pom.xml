@@ -28,13 +28,13 @@
 		<dependency>
 			<groupId>demo.springboot</groupId>
 			<artifactId>springboot-starter-mybatis</artifactId>
-			<version>0.0.1.RELEASE</version>
+			<version>${springboot.demo.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>demo.springboot</groupId>
 			<artifactId>springboot-common</artifactId>
-			<version>0.0.1.RELEASE</version>
+			<version>${springboot.demo.version}</version>
 		</dependency>
 
 		<dependency>
