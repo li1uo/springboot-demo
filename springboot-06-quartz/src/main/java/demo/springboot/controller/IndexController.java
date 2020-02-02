@@ -1,8 +1,8 @@
-package demo.springboot.core.controller;
+package demo.springboot.controller;
 
-import demo.springboot.core.config.schedule.ScheduleUtil;
-import demo.springboot.core.domain.ScheduleJobDto;
-import demo.springboot.core.service.ITaskService;
+import demo.springboot.config.schedule.ScheduleUtil;
+import demo.springboot.domain.ScheduleJobDto;
+import demo.springboot.service.ITaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 import org.springframework.stereotype.Controller;

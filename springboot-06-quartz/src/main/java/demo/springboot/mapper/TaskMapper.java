@@ -1,7 +1,7 @@
-package demo.springboot.core.mapper;
+package demo.springboot.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import demo.springboot.core.domain.ScheduleJobDto;
+import demo.springboot.domain.ScheduleJobDto;
 
 /**
  * @author LILUO

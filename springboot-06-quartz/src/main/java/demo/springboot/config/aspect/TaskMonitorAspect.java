@@ -1,4 +1,4 @@
-package demo.springboot.core.config.aspect;
+package demo.springboot.config.aspect;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
@@ -23,7 +23,7 @@ public class TaskMonitorAspect {
     /**
      * TaskMonitor注解切点
      */
-    @Pointcut("@annotation(demo.springboot.core.config.annotation.TaskMonitor)")
+    @Pointcut("@annotation(demo.springboot.config.annotation.TaskMonitor)")
     public void taskAspect() {
 
     }

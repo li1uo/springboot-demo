@@ -1,9 +1,9 @@
-package demo.springboot.core.service.impl;
+package demo.springboot.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import demo.springboot.core.domain.ScheduleJobDto;
-import demo.springboot.core.mapper.TaskMapper;
-import demo.springboot.core.service.ITaskService;
+import demo.springboot.domain.ScheduleJobDto;
+import demo.springboot.mapper.TaskMapper;
+import demo.springboot.service.ITaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

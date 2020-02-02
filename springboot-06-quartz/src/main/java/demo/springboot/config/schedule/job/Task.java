@@ -1,6 +1,6 @@
-package demo.springboot.core.config.schedule.job;
+package demo.springboot.config.schedule.job;
 
-import demo.springboot.core.config.annotation.TaskMonitor;
+import demo.springboot.config.annotation.TaskMonitor;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.slf4j.Logger;
@@ -13,13 +13,14 @@ import org.springframework.stereotype.Component;
  * @date 2018/11/14
  */
 @Component
-public class TestTask extends QuartzJobBean {
+public class Task extends QuartzJobBean {
 
-    private static Logger logger = LoggerFactory.getLogger(TestTask.class);
+    private static Logger logger = LoggerFactory.getLogger(Task.class);
 
     @TaskMonitor
     @Override
     protected void executeInternal(JobExecutionContext context) throws JobExecutionException {
-        logger.debug("=====定时任务2=====");
+        logger.debug("=====定时任务１=====");
+
     }
 }

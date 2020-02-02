@@ -1,4 +1,4 @@
-package demo.springboot.core.config.annotation;
+package demo.springboot.config.annotation;
 
 import java.lang.annotation.*;
 

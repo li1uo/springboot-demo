@@ -1,6 +1,6 @@
-package demo.springboot.core.config.schedule;
+package demo.springboot.config.schedule;
 
-import demo.springboot.core.domain.ScheduleJobDto;
+import demo.springboot.domain.ScheduleJobDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.quartz.*;

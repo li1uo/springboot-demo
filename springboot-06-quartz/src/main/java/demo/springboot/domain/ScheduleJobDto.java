@@ -1,4 +1,4 @@
-package demo.springboot.core.domain;
+package demo.springboot.domain;
 
 
 

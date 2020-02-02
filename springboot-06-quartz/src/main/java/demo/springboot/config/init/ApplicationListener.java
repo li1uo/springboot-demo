@@ -1,8 +1,8 @@
-package demo.springboot.core.config.init;
+package demo.springboot.config.init;
 
-import demo.springboot.core.config.schedule.ScheduleUtil;
-import demo.springboot.core.domain.ScheduleJobDto;
-import demo.springboot.core.service.ITaskService;
+import demo.springboot.config.schedule.ScheduleUtil;
+import demo.springboot.domain.ScheduleJobDto;
+import demo.springboot.service.ITaskService;
 import org.quartz.CronTrigger;
 import org.quartz.Scheduler;
 import org.slf4j.Logger;

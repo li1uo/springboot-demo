@@ -1,7 +1,7 @@
-package demo.springboot.core.service;
+package demo.springboot.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import demo.springboot.core.domain.ScheduleJobDto;
+import demo.springboot.domain.ScheduleJobDto;
 
 import java.util.List;
 
