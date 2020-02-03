@@ -4,7 +4,7 @@
 
     <parent>
         <groupId>demo.springboot</groupId>
-        <artifactId>springboot-demo</artifactId>
+        <artifactId>boot-demo</artifactId>
         <version>0.0.1.RELEASE</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>

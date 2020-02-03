@@ -28,19 +28,8 @@
     </properties>
 
     <modules>
-        <module>springboot-01-mybatis</module>
-        <module>springboot-02-mutil-datasource</module>
-        <module>springboot-03-websocket</module>
-        <module>springboot-04-kafka</module>
-        <module>springboot-05-swagger</module>
-        <module>springboot-06-quartz</module>
-        <module>springboot-07-rabbitmq</module>
-        <module>springboot-08-atomikos</module>
-        <module>springboot-09-nacos</module>
-        <module>springboot-10-jwt</module>
-        <module>springboot-11-elasticsearch</module>
-        <module>springboot-common</module>
-        <module>springboot-starter-mybatis</module>
+        <module>boot-demo</module>
+        <module>starter-demo</module>
     </modules>
 
     <dependencyManagement>

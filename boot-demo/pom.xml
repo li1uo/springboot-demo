@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<parent>
+		<groupId>demo.springboot</groupId>
+		<artifactId>springboot-demo</artifactId>
+		<version>0.0.1.RELEASE</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>boot-demo</artifactId>
+	<name>${project.artifactId}</name>
+	<version>0.0.1.RELEASE</version>
+	<packaging>pom</packaging>
+
+	<modules>
+		<module>springboot-01-mybatis</module>
+		<module>springboot-02-mutil-datasource</module>
+		<module>springboot-03-websocket</module>
+		<module>springboot-04-kafka</module>
+		<module>springboot-05-swagger</module>
+		<module>springboot-06-quartz</module>
+		<module>springboot-07-rabbitmq</module>
+		<module>springboot-08-atomikos</module>
+		<module>springboot-09-nacos</module>
+		<module>springboot-10-jwt</module>
+		<module>springboot-11-elasticsearch</module>
+	</modules>
+</project>
