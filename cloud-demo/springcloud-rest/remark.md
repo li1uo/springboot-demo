@@ -1,0 +1,3 @@
+eureka-server服务启动后
+该项目再作为eureka-client指定实例名注册到eureka中
+并通过rest客户端工具调用其他工程接口的信息

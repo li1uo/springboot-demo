@@ -1,0 +1,24 @@
+server:
+  port: 8085
+
+spring:
+  application:
+    name: service-zuul
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8081/eureka/
+
+# 路由规则
+zuul:
+  routes:
+    api-a:
+      path: /api-member/**
+      serviceId: service-member
+    api-b:
+      path: /api-order/**
+      serviceId: service-order
+    api-c:
+      path: /api-order-feign
+      serviceId: service-order-feign

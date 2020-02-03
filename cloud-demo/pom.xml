@@ -16,5 +16,11 @@
 
 	<modules>
 		<module>springcloud-eureka</module>
+		<module>springcloud-member</module>
+		<module>springcloud-feign</module>
+		<module>springcloud-rest</module>
+		<module>springcloud-zuul</module>
+		<module>springcloud-client-config</module>
+		<module>springcloud-server-config</module>
 	</modules>
 </project>

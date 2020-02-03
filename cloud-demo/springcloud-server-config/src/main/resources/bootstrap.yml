@@ -1,0 +1,25 @@
+server:
+  port: 8088
+
+spring:
+  cloud:
+    config:
+      server:
+        default-application-name: config-server
+        git:
+          # 配置git仓库地址
+          uri: https://github.com/li1uo/springcloud-config
+          # 配置仓库路径
+          search-paths: config
+          # 访问git仓库的用户名
+          username: 1173530326@qq.com
+          # 访问git仓库的用户密码 如果Git仓库为公开仓库，可以不填写用户名和密码，如果是私有仓库需要填写
+          password: a213514
+      # 配置仓库的分支
+      label: master
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, refresh, bus-refresh
