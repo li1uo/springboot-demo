@@ -29,6 +29,7 @@
 
     <modules>
         <module>boot-demo</module>
+        <module>cloud-demo</module>
         <module>starter-demo</module>
     </modules>
 
