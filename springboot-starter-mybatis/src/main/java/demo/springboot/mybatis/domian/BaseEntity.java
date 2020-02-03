@@ -14,30 +14,9 @@ import java.time.LocalDateTime;
  * @date 2020/02/02
  */
 @Data
-public class BaseEntity implements Serializable {
+public class BaseEntity extends AbstractBaseEntity {
 
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
-    /**
-     * 创建时间
-     */
-    private LocalDateTime createTime;
-
-    /**
-     * 更新时间
-     */
-    private LocalDateTime modifyTime;
-
-    /**
-     * 状态(0 正常 1 删除)
-     */
-    @TableLogic
-    private Integer isDeleted;
-
-    /**
-     * 版本号
-     */
-    @Version
-    private Long version;
 }
