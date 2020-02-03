@@ -19,8 +19,11 @@
         <java.version>1.8</java.version>
 
         <springboot.demo.version>0.0.1.RELEASE</springboot.demo.version>
+
         <spring.boot.version>2.2.4.RELEASE</spring.boot.version>
+        <spring.cloud.version>Hoxton.SR1</spring.cloud.version>
         <spring.platform.version>Cairo-SR8</spring.platform.version>
+
         <nacos.config.version>0.2.3</nacos.config.version>
         <mybatis.version>2.1.1</mybatis.version>
         <druid.version>1.1.21</druid.version>
@@ -42,6 +45,15 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring.cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
             <dependency>
                 <groupId>io.spring.platform</groupId>
                 <artifactId>platform-bom</artifactId>

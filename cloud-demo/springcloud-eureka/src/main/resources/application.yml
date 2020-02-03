@@ -1,0 +1,16 @@
+# 服务端口地址
+server:
+  port: 8081
+
+#logging:
+#  file: eureka.log
+
+# eureka配置
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka

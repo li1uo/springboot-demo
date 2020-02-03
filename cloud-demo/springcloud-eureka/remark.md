@@ -1,0 +1,9 @@
+先启动springcloud eureka-server服务
+
+
+再将其他接口信息注册到eureka中
+
+接口间的相互调用通过注册到eureka中的appplication-name实例名使用rest客户端工具来调用信息,
+不需要使用接口的真正地址
+
+eureka监控地址 localhost:8081/

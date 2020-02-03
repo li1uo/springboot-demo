@@ -14,4 +14,7 @@
 	<version>0.0.1.RELEASE</version>
 	<packaging>pom</packaging>
 
+	<modules>
+		<module>springcloud-eureka</module>
+	</modules>
 </project>
