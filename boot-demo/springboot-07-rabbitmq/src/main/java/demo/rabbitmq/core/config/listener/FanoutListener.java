@@ -1,4 +1,4 @@
-package demo.rabbitmq.core.config;
+package demo.rabbitmq.core.config.listener;
 
 import com.rabbitmq.client.Channel;
 import lombok.extern.slf4j.Slf4j;
