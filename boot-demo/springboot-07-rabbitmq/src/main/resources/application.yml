@@ -4,3 +4,9 @@ spring:
       simple:
         retry:
           enabled: true
+
+logging:
+  level:
+    demo:
+      rabbitmq:
+        core: debug

@@ -18,7 +18,7 @@ import java.io.IOException;
  */
 @Slf4j
 @Configuration
-public class RabbitmqListenerConfig {
+public class QueueListenerConfig {
 
     /**
      * 1.rabbitmq 消费者接收数据精确到routing-key 比如日志系统queue同时绑定 log、debug、error三个routing-key到同一个redirect exchange上
@@ -59,18 +59,6 @@ public class RabbitmqListenerConfig {
     ))
     public void receiveMsg(Message message) {
         log.debug("default-queue-1 data: {}", message.toString());
-    }
-
-    /**
-     * 非持久化临时队列
-     *
-     * @param message
-     */
-    @RabbitListener(bindings = @QueueBinding(
-            value = @Queue(durable = "false", exclusive = "false", autoDelete = "true"),
-            exchange = @Exchange(value = "amq.direct", type = ExchangeTypes.DIRECT)
-    ))
-    public void tempQueue(Message message) {
-        log.debug("temp queue data: {}", message.toString());
+        throw new RuntimeException("11111");
     }
 }

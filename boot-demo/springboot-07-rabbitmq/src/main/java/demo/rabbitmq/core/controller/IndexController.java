@@ -35,7 +35,7 @@ public class IndexController {
      */
     @PostMapping(value = "/topic")
     public Result sendTopicMsg(){
-        rabbitTemplate.convertAndSend("amq.fanout", "", "测试消息");
+        rabbitTemplate.convertAndSend("demo_fanout_exchange", "", "测试消息");
         return Result.success();
     }
 }
