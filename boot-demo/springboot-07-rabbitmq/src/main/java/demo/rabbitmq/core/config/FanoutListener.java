@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Slf4j
 @Configuration
-public class FanoutListenerConfig {
+public class FanoutListener {
 
     @RabbitListener(bindings = @QueueBinding(
             value = @Queue("demo_fanout_queue_1"),

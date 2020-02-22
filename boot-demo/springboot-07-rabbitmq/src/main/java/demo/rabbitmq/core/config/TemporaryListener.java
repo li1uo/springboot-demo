@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Slf4j
 @Configuration
-public class TemporaryListenerConfig {
+public class TemporaryListener {
 
     /**
      * 非持久化临时队列
@@ -24,7 +24,7 @@ public class TemporaryListenerConfig {
      */
     @RabbitListener(bindings = @QueueBinding(
             value = @Queue(durable = "false", exclusive = "false", autoDelete = "true"),
-            exchange = @Exchange(value = "amq.direct", type = ExchangeTypes.DIRECT)
+            exchange = @Exchange(value = "amq.fanout", type = ExchangeTypes.FANOUT)
     ))
     public void tempQueue(Message message) {
         log.debug("temp queue data: {}", message.toString());

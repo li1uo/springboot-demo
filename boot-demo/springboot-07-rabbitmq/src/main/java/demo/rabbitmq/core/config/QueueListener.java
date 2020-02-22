@@ -18,7 +18,7 @@ import java.io.IOException;
  */
 @Slf4j
 @Configuration
-public class QueueListenerConfig {
+public class QueueListener {
 
     /**
      * 1.rabbitmq 消费者接收数据精确到routing-key 比如日志系统queue同时绑定 log、debug、error三个routing-key到同一个redirect exchange上
