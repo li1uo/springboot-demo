@@ -17,5 +17,6 @@
 	<modules>
 		<module>springboot-common</module>
 		<module>springboot-starter-mybatis</module>
+		<module>springboot-starter-redis</module>
 	</modules>
 </project>
