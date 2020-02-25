@@ -5,12 +5,7 @@ spring:
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
-    hikari:
-      connection-test-query: SELECT 1 FROM DUAL
-      connection-timeout: 30000
-      maximum-pool-size: 5
-      max-lifetime: 1800000
-      minimum-idle: 1
+
 ## 日志等级
 logging:
   level:
