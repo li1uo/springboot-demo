@@ -52,6 +52,18 @@
             <artifactId>springboot-common</artifactId>
             <version>${springboot.demo.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>demo.springboot</groupId>
+            <artifactId>springboot-starter-redis</artifactId>
+            <version>${springboot.demo.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>demo.springboot</groupId>
+            <artifactId>springboot-starter-tool</artifactId>
+            <version>${springboot.demo.version}</version>
+        </dependency>
     </dependencies>
 
 </project>

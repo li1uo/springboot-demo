@@ -4,6 +4,8 @@ spring:
       simple:
         retry:
           enabled: true
+    publisher-confirm-type: simple
+    publisher-returns: true
 
 logging:
   level:
