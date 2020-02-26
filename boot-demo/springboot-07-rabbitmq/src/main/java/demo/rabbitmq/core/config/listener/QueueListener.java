@@ -59,6 +59,6 @@ public class QueueListener {
     ))
     public void receiveMsg(Message message) {
         log.debug("default-queue-1 data: {}", message.toString());
-        throw new RuntimeException("11111");
+        //throw new RuntimeException("11111");
     }
 }
