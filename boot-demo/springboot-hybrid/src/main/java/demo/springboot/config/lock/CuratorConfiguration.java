@@ -20,6 +20,7 @@ import lombok.AllArgsConstructor;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.retry.RetryNTimes;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,6 +30,7 @@ import org.springframework.context.annotation.Configuration;
  *
  * @author Chill
  */
+@ConditionalOnProperty(value = "zk.lock.enable", havingValue = "true")
 @Configuration
 @AllArgsConstructor
 @EnableConfigurationProperties({CuratorProperties.class})

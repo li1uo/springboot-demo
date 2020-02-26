@@ -1,1 +1,4 @@
-
+# zookeeper client配置
+zk:
+  lock:
+    enable: false
