@@ -1,4 +1,4 @@
-package demo.springboot.config.redis;
+package demo.springboot.config.thread;
 
 import demo.springboot.tool.util.DateTimeUtil;
 import lombok.extern.slf4j.Slf4j;

@@ -1,5 +1,6 @@
 package demo.springboot.config.redis;
 
+import demo.springboot.config.thread.RedisTask;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
