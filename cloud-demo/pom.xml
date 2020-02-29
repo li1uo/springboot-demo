@@ -18,7 +18,6 @@
 		<module>springcloud-eureka</module>
 		<module>springcloud-member</module>
 		<module>springcloud-feign</module>
-		<module>springcloud-rest</module>
 		<module>springcloud-zuul</module>
 	</modules>
 </project>
