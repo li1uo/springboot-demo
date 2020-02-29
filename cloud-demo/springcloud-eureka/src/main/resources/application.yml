@@ -2,9 +2,6 @@
 server:
   port: 8081
 
-#logging:
-#  file: eureka.log
-
 # eureka配置
 eureka:
   instance:
