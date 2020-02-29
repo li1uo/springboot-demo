@@ -25,6 +25,12 @@
             <artifactId>lombok</artifactId>
             <scope>provided</scope>
         </dependency>
+
+        <dependency>
+            <groupId>demo.springboot</groupId>
+            <artifactId>springboot-starter-tool</artifactId>
+            <version>${springboot.demo.version}</version>
+        </dependency>
     </dependencies>
 
 </project>
