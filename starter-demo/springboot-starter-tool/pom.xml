@@ -17,8 +17,8 @@
     <dependencies>
 
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-core</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot</artifactId>
         </dependency>
 
         <!-- Jackson -->

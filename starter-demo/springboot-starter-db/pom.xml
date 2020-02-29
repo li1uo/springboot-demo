@@ -31,5 +31,11 @@
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
         </dependency>
+
+        <dependency>
+            <groupId>demo.springboot</groupId>
+            <artifactId>springboot-starter-tool</artifactId>
+            <version>${springboot.demo.version}</version>
+        </dependency>
     </dependencies>
 </project>
