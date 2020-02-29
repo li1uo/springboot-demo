@@ -9,7 +9,7 @@ import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
  * @date 2019/02/13
  */
 @EnableEurekaServer
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"demo.cloud", "demo.springboot"})
 public class EurekaApplication {
 
     public static void main(String[] args) {
