@@ -18,6 +18,7 @@
 		<module>springboot-common</module>
 		<module>springboot-starter-auto</module>
 		<module>springboot-starter-boot</module>
+		<module>springboot-starter-cloud</module>
 		<module>springboot-starter-db</module>
 		<module>springboot-starter-log</module>
 		<module>springboot-starter-mybatis</module>
