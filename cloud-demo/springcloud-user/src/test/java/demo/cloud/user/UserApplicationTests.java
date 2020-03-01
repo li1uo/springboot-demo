@@ -1,4 +1,4 @@
-package demo.cloud.member;
+package demo.cloud.user;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class MemberApplicationTests {
+public class UserApplicationTests {
 
     @Test
     public void contextLoads() {
