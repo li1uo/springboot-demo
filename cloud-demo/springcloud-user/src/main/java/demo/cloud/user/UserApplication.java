@@ -9,7 +9,7 @@ import org.springframework.context.annotation.ComponentScan;
  * @author LILUO
  * @date 2019/02/13
  */
-@ComponentScan(basePackages = "demo.springboot")
+@ComponentScan(basePackages = {"demo.springboot", "demo.cloud"})
 @SpringCloudApplication
 public class UserApplication {
 

@@ -1,1 +1,14 @@
+server:
+  port: 80
 
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          # 开启路由自动配置
+          enabled: true
+          # serviceId 转换成小写字母
+          lower-case-service-id: true
+  application:
+    name: service-gateway
