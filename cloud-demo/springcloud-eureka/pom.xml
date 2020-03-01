@@ -25,11 +25,5 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-
-        <dependency>
-            <groupId>demo.springboot</groupId>
-            <artifactId>springboot-starter-cloud</artifactId>
-            <version>${springboot.demo.version}</version>
-        </dependency>
     </dependencies>
 </project>

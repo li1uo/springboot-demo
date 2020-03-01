@@ -1,4 +1,4 @@
-package demo.feign.core.service;
+package demo.cloud.order.service;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,7 +10,7 @@ import java.util.List;
  * @author LILUO
  * @date 2019/02/13
  */
-@FeignClient(name = "service-member", path = "/member")
+@FeignClient(name = "service-user")
 public interface IMemberService {
 
     /**

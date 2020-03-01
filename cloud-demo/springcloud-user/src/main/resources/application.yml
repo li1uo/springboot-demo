@@ -4,8 +4,3 @@ server:
 spring:
   application:
     name: service-user
-
-eureka:
-  client:
-    service-url:
-      defaultZone: http://${eureka.instance.hostname}:${eureka.instance.port}/eureka/

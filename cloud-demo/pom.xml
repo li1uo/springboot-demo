@@ -17,7 +17,7 @@
 	<modules>
 		<module>springcloud-eureka</module>
 		<module>springcloud-user</module>
-		<module>springcloud-feign</module>
+		<module>springcloud-order</module>
 		<module>springcloud-zuul</module>
 	</modules>
 </project>

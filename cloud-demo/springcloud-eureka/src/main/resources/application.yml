@@ -1,9 +1,11 @@
 # 服务端口地址
 server:
-  port: ${eureka.instance.port}
+  port: 8081
 
 # eureka配置
 eureka:
+  instance:
+    hostname: localhost
   client:
     register-with-eureka: false
     fetch-registry: false

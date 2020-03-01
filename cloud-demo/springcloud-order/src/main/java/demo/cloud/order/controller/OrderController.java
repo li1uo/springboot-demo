@@ -1,6 +1,6 @@
-package demo.feign.core.controller;
+package demo.cloud.order.controller;
 
-import demo.feign.core.service.IMemberService;
+import demo.cloud.order.service.IMemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
