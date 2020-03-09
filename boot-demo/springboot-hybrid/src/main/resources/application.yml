@@ -2,3 +2,8 @@
 zk:
   lock:
     enable: false
+
+# 限流设置
+rate-limiter:
+  enable: true
+  type: memory
