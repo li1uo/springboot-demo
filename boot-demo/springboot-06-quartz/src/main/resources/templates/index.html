@@ -32,8 +32,8 @@
              </tr>
           </thead>
           <tbody style="text-align: center">
-             <tr th:each="task,iterStat: ${taskList}">
-                 <td th:text="${task.taskId}"></td>
+             <tr th:each="task, iterStat: ${taskList}">
+                 <td th:text="${task.id}"></td>
                  <td th:text="${task.className}"></td>
                  <td th:text="${task.cronExpression}"></td>
                  <td th:text="${task.status}"></td>
@@ -42,8 +42,8 @@
                  <td th:text="${task.description}"></td>
                  <td th:text="${task.createTime}"></td>
                  <td>
-                     <a style="color: #ff6d76;text-decoration: underline;" th:href="@{'/pause/' + ${task.taskId}}">暂停</a>
-                     <a style="color: #0aa5df;text-decoration: underline;" th:href="@{'/resume/' + ${task.taskId}}">恢复</a>
+                     <a style="color: #ff6d76;text-decoration: underline;" th:href="@{'/pause/' + ${task.id}}">暂停</a>
+                     <a style="color: #0aa5df;text-decoration: underline;" th:href="@{'/resume/' + ${task.id}}">恢复</a>
                  </td>
              </tr>
           </tbody>
