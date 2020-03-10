@@ -46,13 +46,9 @@
         </dependency>
 
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
+            <groupId>demo.springboot</groupId>
+            <artifactId>springboot-common</artifactId>
+            <version>${springboot.demo.version}</version>
         </dependency>
     </dependencies>
 </project>

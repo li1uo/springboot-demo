@@ -33,11 +33,6 @@
         </dependency>
 
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>demo.springboot</groupId>
             <artifactId>springboot-common</artifactId>
             <version>${springboot.demo.version}</version>
@@ -47,11 +42,6 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
         </dependency>
     </dependencies>
 </project>
