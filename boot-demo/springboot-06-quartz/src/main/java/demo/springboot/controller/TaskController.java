@@ -35,7 +35,7 @@ public class TaskController {
     @GetMapping(value = "/index")
     public String list(HttpServletRequest request) {
         // 获取所有task信息
-        List<ScheduleJob> list = taskService.listTask();
+        List<ScheduleJob> list = taskService.list();
         request.setAttribute("taskList", list);
         return "index";
     }
@@ -43,15 +43,15 @@ public class TaskController {
     /**
      * 暂停任务
      *
-     * @param taskId
+     * @param id
      * @return
      * @throws Exception
      */
-    @RequestMapping(value = "/pause/{taskId}")
-    public String pause(@PathVariable Long taskId) throws Exception {
+    @RequestMapping(value = "/pause/{id}")
+    public String pause(@PathVariable Long id) throws Exception {
         // 暂停任务
-        taskService.updateTaskStatus(taskId, -1);
-        ScheduleUtil.pauseJob(schedulerFactoryBean.getScheduler(), taskService.getTaskById(taskId));
+        taskService.updateTaskStatus(id, -1);
+        ScheduleUtil.pauseJob(schedulerFactoryBean.getScheduler(), taskService.getById(id));
         return "redirect:/index";
     }
 
@@ -66,7 +66,7 @@ public class TaskController {
     public String resume(@PathVariable Long taskId) throws Exception {
         // 恢复任务
         taskService.updateTaskStatus(taskId, 1);
-        ScheduleUtil.resumeJob(schedulerFactoryBean.getScheduler(), taskService.getTaskById(taskId));
+        ScheduleUtil.resumeJob(schedulerFactoryBean.getScheduler(), taskService.getById(taskId));
         return "redirect:/index";
     }
 }

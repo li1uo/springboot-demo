@@ -15,14 +15,14 @@ import java.time.LocalDateTime;
  * @date 2018/11/14
  */
 @Data
-@TableName("t_schedule")
+@TableName("system_schedule")
 public class ScheduleJob implements Serializable {
 
     /**
      * 主键id
      */
-    @TableId(value = "task_id", type = IdType.AUTO)
-    private Long taskId;
+    @TableId(value = "id", type = IdType.ID_WORKER)
+    private Long id;
 
     /**
      * 执行class名称

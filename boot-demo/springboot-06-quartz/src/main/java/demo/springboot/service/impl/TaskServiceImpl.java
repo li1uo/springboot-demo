@@ -4,70 +4,61 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import demo.springboot.domain.ScheduleJob;
 import demo.springboot.mapper.TaskMapper;
 import demo.springboot.service.ITaskService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import java.util.Objects;
 
 /**
  * @author LILUO
  * @date 2018/11/14
  */
+@AllArgsConstructor
 @Service("taskService")
 public class TaskServiceImpl extends ServiceImpl<TaskMapper, ScheduleJob> implements ITaskService {
 
-    @Autowired
     private TaskMapper taskMapper;
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
-    public ScheduleJob getTaskById(Long taskId) {
-        return taskMapper.selectById(taskId);
-    }
-
-    @Override
-    public List<ScheduleJob> listTask() {
-        return taskMapper.selectList(null);
+    public boolean insertTask(ScheduleJob scheduleJobDto) {
+        taskMapper.insert(scheduleJobDto);
+        return true;
     }
 
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public int insertTask(ScheduleJob scheduleJobDto) {
-        return taskMapper.insert(scheduleJobDto);
-    }
-
-    @Transactional(rollbackFor = Exception.class)
-    @Override
-    public int updateTask(ScheduleJob scheduleJobDto) {
-        ScheduleJob dto = taskMapper.selectById(scheduleJobDto.getTaskId());
-        if (dto == null || dto.getStatus() == 0){
-            return 1;
+    public boolean updateTask(ScheduleJob scheduleJobDto) {
+        ScheduleJob dto = taskMapper.selectById(scheduleJobDto.getId());
+        if (Objects.isNull(dto) || dto.getStatus() == 0){
+            return false;
         }
         taskMapper.updateById(scheduleJobDto);
-        return 0;
+        return true;
     }
 
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public int deleteTask(Long taskId) {
-        ScheduleJob dto = taskMapper.selectById(taskId);
-        if (dto == null || dto.getStatus() == 0){
-            return 1;
+    public boolean deleteTask(Long id) {
+        ScheduleJob dto = taskMapper.selectById(id);
+        if (Objects.isNull(dto) || dto.getStatus() == 0){
+            return false;
         }
         dto.setStatus(0);
         taskMapper.updateById(dto);
-        return 0;
+        return true;
     }
 
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public int updateTaskStatus(Long taskId, Integer status) {
-        ScheduleJob dto = taskMapper.selectById(taskId);
-        if (dto == null || dto.getStatus() == 0){
-            return 1;
+    public boolean updateTaskStatus(Long id, Integer status) {
+        ScheduleJob dto = taskMapper.selectById(id);
+        if (Objects.isNull(dto) || dto.getStatus() == 0){
+            return false;
         }
         dto.setStatus(status);
         taskMapper.updateById(dto);
-        return 0;
+        return true;
     }
 }
