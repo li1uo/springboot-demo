@@ -28,7 +28,7 @@
                 stompClient.subscribe('/user/queue/msg', function (response) {
                     setMessageInnerHTML("已成功订阅/msg");
                     var returnData = JSON.parse(response.body);
-                    setMessageInnerHTML("/user/" + userName + "/msg 你接收到的消息为:" + returnData.responseMessage);
+                    setMessageInnerHTML("/user/" + userName + "/msg 你接收到的消息为:" + returnData.msg);
                 });
             },
             function errorCallBack(error) {
@@ -40,7 +40,7 @@
         //发送消息
         function send() {
             var message = document.getElementById('text').value;
-            var messageJson = JSON.stringify({ "name": message });
+            var messageJson = JSON.stringify({ "msg": message });
             stompClient.send("/send", {}, messageJson);
             setMessageInnerHTML("/send 你发送的消息:" + message);
         }
@@ -50,7 +50,7 @@
             stompClient.subscribe('/topic/subscribe', function (response) {
                 setMessageInnerHTML("已成功订阅/topic/subscribe");
                 var returnData = JSON.parse(response.body);
-                setMessageInnerHTML("/topic/subscribe 你接收到的消息为:" + returnData.responseMessage);
+                setMessageInnerHTML("/topic/subscribe 你接收到的消息为:" + returnData.msg);
             });
         }
 
@@ -59,7 +59,7 @@
             stompClient.subscribe('/topic/send', function (response) {
                 setMessageInnerHTML("已成功订阅/topic/send");
                 var returnData = JSON.parse(response.body);
-                setMessageInnerHTML("/topic/send 你接收到的消息为:" + returnData.responseMessage);
+                setMessageInnerHTML("/topic/send 你接收到的消息为:" + returnData.msg);
             });
         }
 

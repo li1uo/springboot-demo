@@ -9,9 +9,9 @@ import java.security.Principal;
  * @date 2020/02/02
  */
 @Data
-public class WebsocketPrincipal implements Principal {
+public class UserPrincipal implements Principal {
 
-    public WebsocketPrincipal(String name){
+    public UserPrincipal(String name){
         this.name = name;
     }
 

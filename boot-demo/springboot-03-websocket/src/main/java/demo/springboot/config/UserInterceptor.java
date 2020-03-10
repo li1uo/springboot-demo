@@ -1,6 +1,6 @@
 package demo.springboot.config;
 
-import demo.springboot.domain.WebsocketPrincipal;
+import demo.springboot.domain.UserPrincipal;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
@@ -40,9 +40,9 @@ public class UserInterceptor implements ChannelInterceptor {
                 Object name = ((Map) raw).get("name");
                 if (name instanceof LinkedList) {
                     // 设置当前访问器的认证用户
-                    accessor.setUser(new WebsocketPrincipal(((LinkedList) name).get(0).toString()));
+                    accessor.setUser(new UserPrincipal(((LinkedList) name).get(0).toString()));
                 }else{
-                    accessor.setUser(new WebsocketPrincipal(name.toString()));
+                    accessor.setUser(new UserPrincipal(name.toString()));
                 }
             }
         }

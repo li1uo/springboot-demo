@@ -1,10 +1,7 @@
 package demo.springboot.config;
 
-import demo.springboot.domain.ClientMessageDto;
-import demo.springboot.domain.ServerMessageDto;
+import demo.springboot.domain.AbstractMessageDto;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
@@ -33,17 +30,17 @@ public class WebSocketController {
      * onMessage 前端发送数据时触发
      *
      * 相当于requestMappering
-     * @param message
+     * @param messageDto
      */
     @MessageMapping(value = "/send")
-    public void receiveMessage(ClientMessageDto message){
+    public void receiveMessage(AbstractMessageDto messageDto){
 
-        log.info("接收到了信息" + message.getName());
+        log.info("接收到了信息" + messageDto.getMsg());
         Set<SimpUser> set = simpUserRegistry.getUsers();
         log.debug("userCount: {}", simpUserRegistry.getUserCount());
 
         // sendToUser 目标地址最后还是会转换成/user/liluo/queue/msg
-        messagingTemplate.convertAndSendToUser("liluo","/queue/msg", new ServerMessageDto("你发送的消息为:" + message.getName()));
+        messagingTemplate.convertAndSendToUser("liluo","/queue/msg", new AbstractMessageDto("你发送的消息为:" + messageDto.getMsg()));
         //return new ServerMessageVO("你发送的消息为:" + message.getName());
     }
 
@@ -52,15 +49,15 @@ public class WebSocketController {
      * @return
      */
     @SubscribeMapping("/topic/subscribe")
-    public ServerMessageDto subTopic() {
+    public AbstractMessageDto subTopic() {
         log.info("XXX用户订阅了我。。。");
-        return new ServerMessageDto("感谢你订阅了我。。。");
+        return new AbstractMessageDto("感谢你订阅了我。。。");
     }
 
     @SubscribeMapping("/user/queue/msg")
-    public ServerMessageDto onSub() {
+    public AbstractMessageDto onSub() {
         log.info("XXX用户订阅了我。。。");
         System.out.println("订阅成功=== " + simpUserRegistry.getUserCount());
-        return new ServerMessageDto("感谢你订阅了我。。。");
+        return new AbstractMessageDto("感谢你订阅了我。。。");
     }
 }
