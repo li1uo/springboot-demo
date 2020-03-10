@@ -10,7 +10,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.quartz.JobStoreType;
 import org.springframework.boot.autoconfigure.quartz.QuartzProperties;
 import org.springframework.stereotype.Component;
@@ -22,7 +21,6 @@ import java.util.Objects;
  * @author LILUO
  * @date 2018/11/14
  */
-@ConditionalOnProperty(value = "spring.quartz.jobStoreType", havingValue = "memory")
 @Component
 public class ApplicationListener implements CommandLineRunner {
 
