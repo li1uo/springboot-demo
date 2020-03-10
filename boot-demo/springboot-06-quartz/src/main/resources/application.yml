@@ -1,15 +1,15 @@
 spring:
-  # quartz\u914D\u7F6E
+  # quartz 配置
   quartz:
-    # \u5EF6\u8FDF\u542F\u52A8
+    # 延迟启动时间
     startup-delay: 10s
-    # \u8986\u76D6\u5DF2\u7ECF\u5B58\u5728\u7684\u4EFB\u52A1
+    # 是否覆盖原本任务
     overwrite-existing-jobs: true
-    # \u4EFB\u52A1\u5B58\u50A8\u65B9\u5F0F
+    # 任务保存方式
     job-store-type: memory
-  # \u6570\u636E\u6E90\u914D\u7F6E
+  # 数据源配置
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/ssmshiro?characterEncoding=utf8&useSSL=true
+    url: jdbc:mysql://127.0.0.1:3306/springboot-demo?characterEncoding=utf8&useSSL=true
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
