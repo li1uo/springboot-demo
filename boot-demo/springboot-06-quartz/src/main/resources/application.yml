@@ -1,0 +1,25 @@
+spring:
+  # quartz\u914D\u7F6E
+  quartz:
+    # \u5EF6\u8FDF\u542F\u52A8
+    startup-delay: 10s
+    # \u8986\u76D6\u5DF2\u7ECF\u5B58\u5728\u7684\u4EFB\u52A1
+    overwrite-existing-jobs: true
+    # \u4EFB\u52A1\u5B58\u50A8\u65B9\u5F0F
+    job-store-type: memory
+  # \u6570\u636E\u6E90\u914D\u7F6E
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/ssmshiro?characterEncoding=utf8&useSSL=true
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+# \u65E5\u5FD7\u6253\u5370\u7EA7\u522B
+logging:
+  level:
+    org:
+      springframework:
+        web: debug
+    demo:
+      springboot:
+        core: debug
