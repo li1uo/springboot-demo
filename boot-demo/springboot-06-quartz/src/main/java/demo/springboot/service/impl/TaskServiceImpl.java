@@ -1,7 +1,7 @@
 package demo.springboot.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import demo.springboot.domain.ScheduleJobDto;
+import demo.springboot.domain.ScheduleJob;
 import demo.springboot.mapper.TaskMapper;
 import demo.springboot.service.ITaskService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,31 +15,31 @@ import java.util.List;
  * @date 2018/11/14
  */
 @Service("taskService")
-public class TaskServiceImpl extends ServiceImpl<TaskMapper, ScheduleJobDto> implements ITaskService {
+public class TaskServiceImpl extends ServiceImpl<TaskMapper, ScheduleJob> implements ITaskService {
 
     @Autowired
     private TaskMapper taskMapper;
 
     @Override
-    public ScheduleJobDto getTaskById(Long taskId) {
+    public ScheduleJob getTaskById(Long taskId) {
         return taskMapper.selectById(taskId);
     }
 
     @Override
-    public List<ScheduleJobDto> listTask() {
+    public List<ScheduleJob> listTask() {
         return taskMapper.selectList(null);
     }
 
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public int insertTask(ScheduleJobDto scheduleJobDto) {
+    public int insertTask(ScheduleJob scheduleJobDto) {
         return taskMapper.insert(scheduleJobDto);
     }
 
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public int updateTask(ScheduleJobDto scheduleJobDto) {
-        ScheduleJobDto dto = taskMapper.selectById(scheduleJobDto.getTaskId());
+    public int updateTask(ScheduleJob scheduleJobDto) {
+        ScheduleJob dto = taskMapper.selectById(scheduleJobDto.getTaskId());
         if (dto == null || dto.getStatus() == 0){
             return 1;
         }
@@ -50,7 +50,7 @@ public class TaskServiceImpl extends ServiceImpl<TaskMapper, ScheduleJobDto> imp
     @Transactional(rollbackFor = Exception.class)
     @Override
     public int deleteTask(Long taskId) {
-        ScheduleJobDto dto = taskMapper.selectById(taskId);
+        ScheduleJob dto = taskMapper.selectById(taskId);
         if (dto == null || dto.getStatus() == 0){
             return 1;
         }
@@ -62,7 +62,7 @@ public class TaskServiceImpl extends ServiceImpl<TaskMapper, ScheduleJobDto> imp
     @Transactional(rollbackFor = Exception.class)
     @Override
     public int updateTaskStatus(Long taskId, Integer status) {
-        ScheduleJobDto dto = taskMapper.selectById(taskId);
+        ScheduleJob dto = taskMapper.selectById(taskId);
         if (dto == null || dto.getStatus() == 0){
             return 1;
         }

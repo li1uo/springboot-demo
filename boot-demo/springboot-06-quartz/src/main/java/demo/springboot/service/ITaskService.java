@@ -1,7 +1,7 @@
 package demo.springboot.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import demo.springboot.domain.ScheduleJobDto;
+import demo.springboot.domain.ScheduleJob;
 
 import java.util.List;
 
@@ -9,34 +9,34 @@ import java.util.List;
  * @author LILUO
  * @date 2018/11/14
  */
-public interface ITaskService extends IService<ScheduleJobDto> {
+public interface ITaskService extends IService<ScheduleJob> {
 
     /**
      * 根据id获取定时任务
      * @param taskId
      * @return
      */
-    ScheduleJobDto getTaskById(Long taskId);
+    ScheduleJob getTaskById(Long taskId);
 
     /**
      * 获取所有task
      * @return
      */
-    List<ScheduleJobDto> listTask();
+    List<ScheduleJob> listTask();
 
     /**
      * 新增task
      * @param scheduleJobDto
      * @return
      */
-    int insertTask(ScheduleJobDto scheduleJobDto);
+    int insertTask(ScheduleJob scheduleJobDto);
 
     /**
      * 修改task
      * @param scheduleJobDto
      * @return
      */
-    int updateTask(ScheduleJobDto scheduleJobDto);
+    int updateTask(ScheduleJob scheduleJobDto);
 
     /**
      * 删除task

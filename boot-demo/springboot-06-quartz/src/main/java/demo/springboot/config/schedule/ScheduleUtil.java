@@ -1,6 +1,6 @@
 package demo.springboot.config.schedule;
 
-import demo.springboot.domain.ScheduleJobDto;
+import demo.springboot.domain.ScheduleJob;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.quartz.*;
@@ -11,7 +11,7 @@ import org.quartz.*;
  */
 public class ScheduleUtil {
 
-    private final static Logger logger = LoggerFactory.getLogger(ScheduleUtil.class);
+    public final static Logger logger = LoggerFactory.getLogger(ScheduleUtil.class);
 
     /**
      * 获取 Trigger Key
@@ -19,7 +19,7 @@ public class ScheduleUtil {
      * @param scheduleJobDto
      * @return
      */
-    public static TriggerKey getTriggerKey(ScheduleJobDto scheduleJobDto) {
+    public static TriggerKey getTriggerKey(ScheduleJob scheduleJobDto) {
         return TriggerKey.triggerKey(scheduleJobDto.getJobName(), scheduleJobDto.getJobGroup());
     }
 
@@ -29,7 +29,7 @@ public class ScheduleUtil {
      * @param scheduleJobDto
      * @return
      */
-    public static JobKey getJobKey(ScheduleJobDto scheduleJobDto) {
+    public static JobKey getJobKey(ScheduleJob scheduleJobDto) {
         return JobKey.jobKey(scheduleJobDto.getJobName(), scheduleJobDto.getJobGroup());
     }
 
@@ -40,7 +40,7 @@ public class ScheduleUtil {
      * @param scheduleJobDto
      * @return
      */
-    public static CronTrigger getCronTrigger(Scheduler scheduler, ScheduleJobDto scheduleJobDto) throws Exception{
+    public static CronTrigger getCronTrigger(Scheduler scheduler, ScheduleJob scheduleJobDto) throws Exception {
         try {
             return (CronTrigger) scheduler.getTrigger(getTriggerKey(scheduleJobDto));
         } catch (SchedulerException e) {
@@ -55,7 +55,7 @@ public class ScheduleUtil {
      * @param scheduleJobDto
      * @throws Exception
      */
-    public static void createScheduleJob(Scheduler scheduler, ScheduleJobDto scheduleJobDto) throws Exception {
+    public static void createScheduleJob(Scheduler scheduler, ScheduleJob scheduleJobDto) throws Exception {
 
         validateCronExpression(scheduleJobDto);
 
@@ -86,8 +86,7 @@ public class ScheduleUtil {
                 pauseJob(scheduler, scheduleJobDto);
             }
         } catch (Exception e) {
-            e.printStackTrace();
-            logger.error("Execute schedule job failed");
+            logger.error("Execute schedule job failed", e);
             throw new Exception("Execute schedule job failed", e);
         }
     }
@@ -100,7 +99,7 @@ public class ScheduleUtil {
      * @param scheduleJobDto
      * @throws Exception
      */
-    public static void updateScheduleJob(Scheduler scheduler, ScheduleJobDto scheduleJobDto) throws Exception {
+    public static void updateScheduleJob(Scheduler scheduler, ScheduleJob scheduleJobDto) throws Exception {
 
         validateCronExpression(scheduleJobDto);
 
@@ -126,8 +125,7 @@ public class ScheduleUtil {
                 pauseJob(scheduler, scheduleJobDto);
             }
         } catch (SchedulerException e) {
-            e.printStackTrace();
-            logger.error("Update schedule job failed");
+            logger.error("Update schedule job failed", e);
             throw new Exception("Update schedule job failed", e);
         }
     }
@@ -139,13 +137,12 @@ public class ScheduleUtil {
      * @param scheduleJobDto
      * @throws Exception
      */
-    public static void run(Scheduler scheduler, ScheduleJobDto scheduleJobDto) throws Exception {
+    public static void run(Scheduler scheduler, ScheduleJob scheduleJobDto) throws Exception {
         try {
             scheduler.triggerJob(getJobKey(scheduleJobDto));
             logger.info("Run schedule job {}-{} success", scheduleJobDto.getJobGroup(), scheduleJobDto.getJobName());
         } catch (SchedulerException e) {
-            e.printStackTrace();
-            logger.error("Run schedule job failed");
+            logger.error("Run schedule job failed", e);
             throw new Exception("Run schedule job failed", e);
         }
     }
@@ -156,13 +153,12 @@ public class ScheduleUtil {
      * @param scheduler
      * @param scheduleJobDto
      */
-    public static void pauseJob(Scheduler scheduler, ScheduleJobDto scheduleJobDto) throws Exception {
+    public static void pauseJob(Scheduler scheduler, ScheduleJob scheduleJobDto) throws Exception {
         try {
             scheduler.pauseJob(getJobKey(scheduleJobDto));
             logger.info("Pause schedule job {}-{} success", scheduleJobDto.getJobGroup(), scheduleJobDto.getJobName());
         } catch (SchedulerException e) {
-            e.printStackTrace();
-            logger.error("Pause schedule job failed");
+            logger.error("Pause schedule job failed", e);
             throw new Exception("Pause job failed", e);
         }
     }
@@ -174,13 +170,12 @@ public class ScheduleUtil {
      * @param scheduleJobDto
      * @throws Exception
      */
-    public static void resumeJob(Scheduler scheduler, ScheduleJobDto scheduleJobDto) throws Exception {
+    public static void resumeJob(Scheduler scheduler, ScheduleJob scheduleJobDto) throws Exception {
         try {
             scheduler.resumeJob(getJobKey(scheduleJobDto));
             logger.info("Resume schedule job {}-{} success", scheduleJobDto.getJobGroup(), scheduleJobDto.getJobName());
         } catch (SchedulerException e) {
-            e.printStackTrace();
-            logger.error("Resume schedule job failed");
+            logger.error("Resume schedule job failed", e);
             throw new Exception("Resume job failed", e);
         }
     }
@@ -192,13 +187,12 @@ public class ScheduleUtil {
      * @param scheduleJobDto
      * @throws Exception
      */
-    public static void deleteJob(Scheduler scheduler, ScheduleJobDto scheduleJobDto) throws Exception {
+    public static void deleteJob(Scheduler scheduler, ScheduleJob scheduleJobDto) throws Exception {
         try {
             scheduler.deleteJob(getJobKey(scheduleJobDto));
             logger.info("Delete schedule job {}-{} success", scheduleJobDto.getJobGroup(), scheduleJobDto.getJobName());
         } catch (SchedulerException e) {
-            e.printStackTrace();
-            logger.error("Delete schedule job failed");
+            logger.error("Delete schedule job failed", e);
             throw new Exception("Delete job failed", e);
         }
     }
@@ -206,7 +200,7 @@ public class ScheduleUtil {
     /**
      * 校验Cron表达式
      */
-    public static void validateCronExpression(ScheduleJobDto scheduleJobDto) throws Exception {
+    public static void validateCronExpression(ScheduleJob scheduleJobDto) throws Exception {
         if (!CronExpression.isValidExpression(scheduleJobDto.getCronExpression())) {
             throw new Exception(String.format("Job %s expression %s is not correct!", scheduleJobDto.getClassName(), scheduleJobDto.getCronExpression()));
         }

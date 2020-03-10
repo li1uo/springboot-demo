@@ -1,7 +1,7 @@
 package demo.springboot.config.init;
 
 import demo.springboot.config.schedule.ScheduleUtil;
-import demo.springboot.domain.ScheduleJobDto;
+import demo.springboot.domain.ScheduleJob;
 import demo.springboot.service.ITaskService;
 import org.quartz.CronTrigger;
 import org.quartz.Scheduler;
@@ -33,8 +33,8 @@ public class ApplicationListener implements CommandLineRunner {
     @Override
     public void run(String... args) {
         // 应用启动之后执行所有可执行的的任务
-        List<ScheduleJobDto> scheduleJobList = taskService.listTask();
-        for (ScheduleJobDto scheduleJob : scheduleJobList) {
+        List<ScheduleJob> scheduleJobList = taskService.listTask();
+        for (ScheduleJob scheduleJob : scheduleJobList) {
             try {
                 CronTrigger cronTrigger = ScheduleUtil.getCronTrigger(scheduleBean, scheduleJob);
                 if (cronTrigger == null) {

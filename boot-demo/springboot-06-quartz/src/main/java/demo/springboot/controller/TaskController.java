@@ -1,7 +1,7 @@
 package demo.springboot.controller;
 
 import demo.springboot.config.schedule.ScheduleUtil;
-import demo.springboot.domain.ScheduleJobDto;
+import demo.springboot.domain.ScheduleJob;
 import demo.springboot.service.ITaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
@@ -18,7 +18,7 @@ import java.util.List;
  * @date 2018/11/16
  */
 @Controller
-public class IndexController {
+public class TaskController {
 
     @Autowired
     private ITaskService taskService;
@@ -28,19 +28,21 @@ public class IndexController {
 
     /**
      * 查看任务列表
+     *
      * @param request
      * @return
      */
     @GetMapping(value = "/index")
-    public String index(HttpServletRequest request) throws Exception {
+    public String list(HttpServletRequest request) {
         // 获取所有task信息
-        List<ScheduleJobDto> list = taskService.listTask();
+        List<ScheduleJob> list = taskService.listTask();
         request.setAttribute("taskList", list);
         return "index";
     }
 
     /**
      * 暂停任务
+     *
      * @param taskId
      * @return
      * @throws Exception
@@ -55,6 +57,7 @@ public class IndexController {
 
     /**
      * 恢复任务
+     *
      * @param taskId
      * @return
      * @throws Exception
