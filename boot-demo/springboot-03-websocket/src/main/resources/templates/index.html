@@ -10,17 +10,19 @@
     <script src="https://cdn.bootcss.com/sockjs-client/1.1.4/sockjs.min.js"></script>-->
     <script th:inline="javascript" type="text/javascript">
         // 建立连接对象（还未发起连接）
-        var socket = new SockJS("http://localhost:8080/websocket/webSocketServer");
+        let socket = new SockJS("http://localhost:8080/websocket/webSocketServer");
 
         // 获取 STOMP 子协议的客户端对象
-        var stompClient = Stomp.over(socket);
+        let stompClient = Stomp.over(socket);
 
         // 获取session的userName
-        var userName = [[${userName}]];
+        let userName = [[${userName}]];
 
         // 向服务器发起websocket连接并发送CONNECT帧
         stompClient.connect(
-            {name : userName},
+            {
+                name : userName
+            },
             function connectCallback(frame) {
                 // 连接成功时（服务器响应 CONNECTED 帧）的回调方法
                 setMessageInnerHTML("连接成功");

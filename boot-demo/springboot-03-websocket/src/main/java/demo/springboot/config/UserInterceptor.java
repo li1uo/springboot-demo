@@ -24,6 +24,7 @@ public class UserInterceptor implements ChannelInterceptor {
 
     /**
      * 消息拦截器,在向客户端发送消息前进入此方法
+     *
      * @param message
      * @param channel
      * @return

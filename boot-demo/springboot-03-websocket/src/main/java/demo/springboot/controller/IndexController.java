@@ -1,12 +1,8 @@
 package demo.springboot.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.messaging.simp.user.SimpUserRegistry;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -18,24 +14,14 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class IndexController {
 
-    @Autowired
-    private SimpUserRegistry simpUserRegistry;
-
-    @RequestMapping(value = "/index")
+    @GetMapping("/index")
     public String index(HttpServletRequest request){
-        System.out.println("进入index  当前用户人数: " + simpUserRegistry.getUserCount());
         request.setAttribute("userName","liluo");
         return "index";
     }
 
-    @RequestMapping(value = "/")
+    @GetMapping("/")
     public String defaultPage(){
         return "redirect:/index";
-    }
-
-    @RequestMapping(value = "/test")
-    public String test(){
-        System.out.println("进入test 当前用户人数: " + simpUserRegistry.getUserCount());
-        return "test";
     }
 }
