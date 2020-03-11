@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class TestTask extends QuartzJobBean {
 
-    private static Logger logger = LoggerFactory.getLogger(TestTask.class);
+    public static final Logger logger = LoggerFactory.getLogger(TestTask.class);
 
     @TaskMonitor
     @Override

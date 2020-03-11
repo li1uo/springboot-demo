@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class TaskMonitorAspect {
 
-    private static final Logger logger = LoggerFactory.getLogger(TaskMonitorAspect.class);
+    public static final Logger logger = LoggerFactory.getLogger(TaskMonitorAspect.class);
 
     /**
      * TaskMonitor注解切点
@@ -29,30 +29,27 @@ public class TaskMonitorAspect {
     }
 
     /**
-     * 方法执行的整个周期
+     * 方法执行周期
+     *
      * @param point
-     * @throws NoSuchMethodException
      */
     @Around("taskAspect()")
     public Object around(ProceedingJoinPoint point){
         // 获取执行方法(此方法为拿到实现类的方法)
         Signature sig = point.getSignature();
-        MethodSignature msig = null;
-        if (!(sig instanceof MethodSignature)) {
-            throw new IllegalArgumentException("该注解只能用于方法");
-        }
-        msig = (MethodSignature) sig;
+        MethodSignature msig = (MethodSignature) sig;
         // 方法名
         String methodName = msig.getName();
         Object result = null;
         try{
-            logger.debug("=====开始执行定时任务=====");
             // 执行目标方法
             result = point.proceed();
         } catch (Throwable e) {
-            logger.error("=====定时任务异常=====");
+            // 方法执行异常
+
         }finally {
-            logger.debug("=====定时任务执行完毕=====");
+            // 方法执行完毕
+
         }
 
         return result;
