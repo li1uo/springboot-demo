@@ -36,14 +36,16 @@
                  <td th:text="${task.id}"></td>
                  <td th:text="${task.className}"></td>
                  <td th:text="${task.cronExpression}"></td>
-                 <td th:text="${task.status}"></td>
+                 <td th:if="${task.status == 1}">进行中</td>
+                 <td th:if="${task.status == 0}">已删除</td>
+                 <td th:if="${task.status == -1}">暂停</td>
                  <td th:text="${task.jobName}"></td>
                  <td th:text="${task.jobGroup}"></td>
                  <td th:text="${task.description}"></td>
                  <td th:text="${task.createTime}"></td>
                  <td>
-                     <a style="color: #ff6d76;text-decoration: underline;" th:href="@{'/pause/' + ${task.id}}">暂停</a>
-                     <a style="color: #0aa5df;text-decoration: underline;" th:href="@{'/resume/' + ${task.id}}">恢复</a>
+                     <a style="color: #ff6d76;text-decoration: underline;" th:href="@{'/pause/' + ${task.id}}" th:if="${task.status == 1}" >暂停</a>
+                     <a style="color: #0aa5df;text-decoration: underline;" th:href="@{'/resume/' + ${task.id}}" th:if="${task.status == -1}" >恢复</a>
                  </td>
              </tr>
           </tbody>
