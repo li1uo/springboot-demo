@@ -23,6 +23,7 @@
 		<module>springboot-starter-log</module>
 		<module>springboot-starter-mybatis</module>
 		<module>springboot-starter-redis</module>
+		<module>springboot-starter-swagger</module>
 		<module>springboot-starter-tool</module>
 	</modules>
 </project>

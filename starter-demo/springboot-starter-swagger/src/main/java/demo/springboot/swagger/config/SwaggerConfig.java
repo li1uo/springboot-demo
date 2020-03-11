@@ -1,6 +1,7 @@
-package demo.config;
+package demo.springboot.swagger.config;
 
 import com.github.xiaoymin.knife4j.spring.annotations.EnableKnife4j;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -27,8 +28,10 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
+                // 扫描所有有注解的api, 用这种方式更灵活
+                .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
                 // 选择controller包
-                .apis(RequestHandlerSelectors.basePackage("demo.controller"))
+                //.apis(RequestHandlerSelectors.basePackage("demo.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }
@@ -36,7 +39,7 @@ public class SwaggerConfig {
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 // 自定义信息可按需求填写
-                .title("Spring Boot中使用Swagger构建RESTful APIs")
+                .title("springboot demo")
                 .description("测试")
                 .termsOfServiceUrl("http://www.baidu.com")
                 .version("1.0")

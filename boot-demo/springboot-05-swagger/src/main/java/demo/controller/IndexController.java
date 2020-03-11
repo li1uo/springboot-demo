@@ -1,9 +1,10 @@
 package demo.controller;
 
+import demo.springboot.common.domain.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -15,9 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class IndexController {
 
-    @ApiOperation(value = "获取测试数据")
-    @RequestMapping(value = "/test",method = RequestMethod.GET)
-    public String test(){
-        return "测试swagger2333";
+    @ApiOperation(value = "swagger测试")
+    @GetMapping("/test")
+    public Result test(){
+        return Result.data("swagger测试");
     }
 }
