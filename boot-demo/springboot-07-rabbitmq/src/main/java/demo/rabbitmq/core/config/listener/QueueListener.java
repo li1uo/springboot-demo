@@ -21,10 +21,7 @@ import java.io.IOException;
 public class QueueListener {
 
     /**
-     * 1.rabbitmq 消费者接收数据精确到routing-key 比如日志系统queue同时绑定 log、debug、error三个routing-key到同一个redirect exchange上
-     * 接收数据时可以使用三个listener 绑定不同的routing-key来接收不同级别的日志
-     *
-     * 2.redirect exchange支持多个queue使用同一个routing-key或一个queue使用多个routing-key
+     * redirect exchange支持多个queue使用同一个routing-key或一个queue使用多个routing-key
      *
      * bindings该写法会自动创建queue 和 exchange 并绑定queue到exchange上
      *
