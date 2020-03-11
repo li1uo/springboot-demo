@@ -1,4 +1,4 @@
-package demo.rabbitmq.core.controller;
+package demo.springboot.controller;
 
 import demo.springboot.common.domain.Result;
 import lombok.AllArgsConstructor;

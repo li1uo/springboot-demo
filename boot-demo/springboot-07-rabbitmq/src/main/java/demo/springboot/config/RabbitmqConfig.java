@@ -1,4 +1,4 @@
-package demo.rabbitmq.core.config;
+package demo.springboot.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;

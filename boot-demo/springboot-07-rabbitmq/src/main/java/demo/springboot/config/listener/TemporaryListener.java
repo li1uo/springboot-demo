@@ -1,4 +1,4 @@
-package demo.rabbitmq.core.config.listener;
+package demo.springboot.config.listener;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.ExchangeTypes;

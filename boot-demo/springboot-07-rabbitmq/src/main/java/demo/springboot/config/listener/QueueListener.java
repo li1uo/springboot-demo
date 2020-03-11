@@ -1,4 +1,4 @@
-package demo.rabbitmq.core.config.listener;
+package demo.springboot.config.listener;
 
 import com.rabbitmq.client.Channel;
 import lombok.extern.slf4j.Slf4j;

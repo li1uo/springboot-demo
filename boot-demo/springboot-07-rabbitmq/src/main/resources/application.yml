@@ -8,5 +8,4 @@ spring:
 logging:
   level:
     demo:
-      rabbitmq:
-        core: debug
+      springboot: debug
