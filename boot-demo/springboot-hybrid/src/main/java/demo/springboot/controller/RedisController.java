@@ -2,6 +2,8 @@ package demo.springboot.controller;
 
 import demo.springboot.common.domain.Result;
 import demo.springboot.config.ratelimit.memory.RateLimiter;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -16,6 +18,7 @@ import java.util.concurrent.TimeUnit;
  * @author LILUO
  * @date 2020/02/26
  */
+@Api("redis测试类")
 @Slf4j
 @AllArgsConstructor
 @RestController
@@ -28,6 +31,7 @@ public class RedisController {
      *
      * @return
      */
+    @ApiOperation(value = "redis队列插入接口")
     @PostMapping("/redis/queue")
     public Result sendRedisQueue(){
         return Result.data(redisTemplate.opsForList().rightPush("redis-test-queue", UUID.randomUUID().toString()));
