@@ -1,5 +1,6 @@
 package demo.config;
 
+import com.github.xiaoymin.knife4j.spring.annotations.EnableKnife4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -11,10 +12,12 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
- * <p>swagger配置</p>
+ * swagger配置
+ *
  * @author LILUO
  * @date 2018/9/15
  */
+@EnableKnife4j
 @EnableSwagger2
 @Configuration
 public class SwaggerConfig {
