@@ -7,6 +7,38 @@ spring:
     overwrite-existing-jobs: true
     # 任务保存方式
     job-store-type: jdbc
+    jdbc:
+      # 不初始化表结构
+      initialize-schema: never
+    properties:
+      org:
+        quartz:
+          scheduler:
+            # 默认主机名和时间戳生成实例ID,可以是任何字符串，但对于所有调度程序来说，必须是唯一的 对应qrtz_scheduler_state INSTANCE_NAME字段
+            instanceId: AUTO
+            #quartzScheduler
+            #instanceName: clusteredScheduler
+          jobStore:
+            # 持久化配置
+            class: org.quartz.impl.jdbcjobstore.JobStoreTX
+            # 我们仅为数据库制作了特定于数据库的代理
+            driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+            # 以指示JDBCJobStore将JobDataMaps中的所有值都作为字符串，因此可以作为名称 - 值对存储而不是在BLOB列中以其序列化形式存储更多复杂的对象。从长远来看，这是更安全的，因为您避免了将非String类序列化为BLOB的类版本问题。
+            useProperties: false
+            # 数据库表前缀
+            tablePrefix: QRTZ_
+            # 在被认为“失火”之前，调度程序将“容忍”一个Triggers将其下一个启动时间通过的毫秒数。默认值（如果您在配置中未输入此属性）为60000（60秒）。
+            misfireThreshold: 60000
+            # 设置此实例“检入”*与群集的其他实例的频率（以毫秒为单位）。影响检测失败实例的速度。
+            clusterCheckinInterval: 5000
+            # 打开群集功能
+            isClustered: true
+          # 连接池
+          threadPool:
+            class: org.quartz.simpl.SimpleThreadPool
+            threadCount: 10
+            threadPriority: 5
+            threadsInheritContextClassLoaderOfInitializingThread: true
   # 数据源配置
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/springboot-demo?characterEncoding=utf8&useSSL=false
