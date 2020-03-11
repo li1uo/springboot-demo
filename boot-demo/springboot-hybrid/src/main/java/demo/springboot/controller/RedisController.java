@@ -1,5 +1,6 @@
 package demo.springboot.controller;
 
+import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
 import demo.springboot.common.domain.Result;
 import demo.springboot.config.ratelimit.memory.RateLimiter;
 import io.swagger.annotations.Api;
@@ -18,7 +19,7 @@ import java.util.concurrent.TimeUnit;
  * @author LILUO
  * @date 2020/02/26
  */
-@Api("redis测试类")
+@Api(value = "redis", tags = "redis接口")
 @Slf4j
 @AllArgsConstructor
 @RestController
@@ -31,6 +32,7 @@ public class RedisController {
      *
      * @return
      */
+    @ApiOperationSupport(order = 1)
     @ApiOperation(value = "redis队列插入接口")
     @PostMapping("/redis/queue")
     public Result sendRedisQueue(){

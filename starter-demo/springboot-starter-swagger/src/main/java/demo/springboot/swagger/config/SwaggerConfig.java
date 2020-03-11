@@ -16,7 +16,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  * swagger配置
  *
  * @author LILUO
- * @date 2018/9/15
+ * @date 2020/03/11
  */
 @EnableKnife4j
 @EnableSwagger2
@@ -40,7 +40,8 @@ public class SwaggerConfig {
         return new ApiInfoBuilder()
                 // 自定义信息可按需求填写
                 .title("springboot demo")
-                .description("测试")
+                .description("springboot demo")
+                .license("license by li1uo")
                 .termsOfServiceUrl("http://www.baidu.com")
                 .version("1.0")
                 .build();
