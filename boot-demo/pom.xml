@@ -17,6 +17,7 @@
 	<modules>
 		<module>springboot-hybrid</module>
 		<module>springboot-01-mybatis</module>
+		<module>springboot-02-mycat</module>
 		<module>springboot-03-websocket</module>
 		<module>springboot-04-kafka</module>
 		<module>springboot-06-quartz</module>
