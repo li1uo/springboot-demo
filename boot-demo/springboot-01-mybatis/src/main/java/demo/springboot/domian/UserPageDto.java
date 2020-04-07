@@ -7,6 +7,6 @@ import lombok.Data;
  * @date 2020/02/02
  */
 @Data
-public class UserPageDto extends PageParamDto {
+public class UserPageDto {
 
 }

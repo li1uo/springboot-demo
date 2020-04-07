@@ -6,6 +6,7 @@ import demo.springboot.domian.UserDO;
 import demo.springboot.domian.UserPageDto;
 import demo.springboot.service.IUserService;
 import demo.springboot.common.domain.Result;
+import demo.springboot.tool.support.Query;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -68,8 +69,8 @@ public class UserController {
     @PostMapping("/update")
     public Result update(UserDO userDO){
         UserDO current = userService.getById(userDO.getId());
-        userDO.setModifyTime(LocalDateTime.now());
-        userDO.setVersion(current.getVersion());
+        current.setUserName(userDO.getUserName());
+        current.setUserPassword(userDO.getUserPassword());
         return Result.status(userService.updateById(userDO));
     }
 
@@ -87,12 +88,13 @@ public class UserController {
     /**
      * 分页查询
      *
+     * @param query
      * @param userPageDto
      * @return
      */
     @GetMapping("/list")
-    public Result<List<UserDO>> list(UserPageDto userPageDto){
-        IPage<UserDO> page = userService.listUser(userPageDto.getPage(), userPageDto);
+    public Result<List<UserDO>> list(Query query, UserPageDto userPageDto){
+        IPage<UserDO> page = userService.listUser(query.build(), userPageDto);
         return Result.data(page.getRecords());
     }
 }
