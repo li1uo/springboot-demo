@@ -50,12 +50,11 @@ public class ExceptionAdvice {
      * @param e
      * @return
      */
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(ParameterErrorException.class)
     public @ResponseBody Result parameterErrorException(ParameterErrorException e){
-        String msg = messageSource.getMessage(CommonConstant.I18N_PREFIX + e.getCode(), null, LocaleContextHolder.getLocale());
 
-        return Result.fail(e.getCode(), msg);
+        return Result.fail(e.getCode(), e.getMessage());
     }
 
     /**
@@ -64,12 +63,11 @@ public class ExceptionAdvice {
      * @param e
      * @return
      */
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(ServiceException.class)
-    public @ResponseBody Result parameterErrorException(ServiceException e){
-        String msg = messageSource.getMessage(CommonConstant.I18N_PREFIX + e.getCode(), null, LocaleContextHolder.getLocale());
+    public @ResponseBody Result serviceException(ServiceException e){
 
-        return Result.fail(e.getCode(), msg);
+        return Result.fail(e.getCode(), e.getMessage());
     }
 
     /**

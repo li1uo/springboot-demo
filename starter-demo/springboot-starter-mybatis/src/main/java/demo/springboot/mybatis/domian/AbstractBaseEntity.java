@@ -1,5 +1,6 @@
 package demo.springboot.mybatis.domian;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.Version;
 import lombok.Data;
@@ -27,6 +28,7 @@ public class AbstractBaseEntity implements Serializable {
     /**
      * 状态(0 正常 1 删除)
      */
+    @TableField(exist = false)
     @TableLogic
     private Integer isDeleted;
 
