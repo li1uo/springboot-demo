@@ -1,7 +1,7 @@
 package demo.springboot.controller;
 
 import demo.springboot.common.domain.Result;
-import demo.springboot.config.lock.ZkLocker;
+import demo.springboot.config.lock.curator.ZkLocker;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -34,7 +34,7 @@ public class CuratorController {
             log.info("第 {} 件商品", count);
             count--;
         }
-        //zkLocker.release(path);
+        zkLocker.release(path);
         return Result.success();
     }
 
