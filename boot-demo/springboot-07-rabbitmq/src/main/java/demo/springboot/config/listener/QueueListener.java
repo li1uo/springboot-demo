@@ -9,6 +9,7 @@ import org.springframework.amqp.rabbit.annotation.Queue;
 import org.springframework.amqp.rabbit.annotation.QueueBinding;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.messaging.handler.annotation.Payload;
 
 import java.io.IOException;
 
@@ -22,21 +23,22 @@ public class QueueListener {
 
     /**
      * redirect exchange支持多个queue使用同一个routing-key或一个queue使用多个routing-key
-     *
      * bindings该写法会自动创建queue 和 exchange 并绑定queue到exchange上
      *
+     * @param msg
      * @param message
+     * @param channel
      */
     @RabbitListener(bindings = @QueueBinding(
             value = @Queue("springboot_demo_default_queue"),
             exchange = @Exchange(value = "amq.direct", type = ExchangeTypes.DIRECT),
             key = "default-queue"
     ), ackMode = "MANUAL")
-    public void defaultQueue(Message message, Channel channel) {
+    public void defaultQueue(@Payload String msg, Message message, Channel channel) {
         //  如果手动ACK,消息会被监听消费,但是消息在队列中依旧存在,如果 未配置 acknowledge-mode 默认是会在消费完毕后自动ACK掉
         final long deliveryTag = message.getMessageProperties().getDeliveryTag();
         try {
-            log.debug("defaultQueue data: {}", message.toString());
+            log.debug("defaultQueue data: {}", msg);
             // 通知 MQ 消息已被成功消费,可以ACK了
             channel.basicAck(deliveryTag, false);
         } catch (IOException e) {
