@@ -11,4 +11,17 @@ import java.lang.annotation.*;
 @Documented
 public @interface RabbitReject {
 
+    /**
+     * 是否重试 false 将会直接reject消息
+     *
+     * @return
+     */
+    boolean retry() default true;
+
+    /**
+     * 重试次数
+     *
+     * @return
+     */
+    int attempts() default 3;
 }

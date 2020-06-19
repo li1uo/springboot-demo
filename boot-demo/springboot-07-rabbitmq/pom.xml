@@ -50,5 +50,11 @@
             <artifactId>springboot-common</artifactId>
             <version>0.0.1.RELEASE</version>
         </dependency>
+
+        <dependency>
+            <groupId>demo.springboot</groupId>
+            <artifactId>springboot-starter-redis</artifactId>
+            <version>0.0.1.RELEASE</version>
+        </dependency>
     </dependencies>
 </project>
