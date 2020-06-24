@@ -3,6 +3,7 @@ package demo.springboot.config.thread;
 import demo.springboot.domain.MatchOrderData;
 import demo.springboot.domain.MatchOrderMsg;
 import demo.springboot.tool.util.JsonUtil;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -38,12 +39,12 @@ public class MatchOrderThread implements Runnable {
 
     private RabbitTemplate rabbitTemplate;
 
+    @SneakyThrows
     @Override
     public void run() {
-        // 上锁
-        lock.lock();
-        long begin = System.currentTimeMillis();
-        try{
+
+        while(true){
+            long begin = System.currentTimeMillis();
             // 取买单队列中价格最高的
             List<Object> buyOrderList = new ArrayList<>(redisTemplate.opsForZSet().reverseRange(BUY_ORDER_QUEUE, 0, 0));
 
@@ -51,8 +52,9 @@ public class MatchOrderThread implements Runnable {
             List<Object> sellOrderList = new ArrayList<>(redisTemplate.opsForZSet().range(SELL_ORDER_QUEUE, 0, 0));
 
             if (CollectionUtils.isEmpty(buyOrderList) || CollectionUtils.isEmpty(sellOrderList)){
-               // log.info("match order end, 订单处理完毕");
-                return;
+                // log.info("match order end, 订单处理完毕");
+                Thread.sleep(1000);
+                continue;
             }
 
             // MQ进行订单撮合
@@ -61,7 +63,7 @@ public class MatchOrderThread implements Runnable {
             MatchOrderData sellOrder = (MatchOrderData)sellOrderList.get(0);
 
             if (buyOrder.getUserId().equals(sellOrder.getUserId())){
-                return;
+                continue;
             }
             msg.setBuyOrder(buyOrder.getOrderNo());
             msg.setSellOrder(sellOrder.getOrderNo());
@@ -70,13 +72,8 @@ public class MatchOrderThread implements Runnable {
             // 删除队列中该订单
             redisTemplate.opsForZSet().remove(BUY_ORDER_QUEUE, buyOrderList.get(0));
             redisTemplate.opsForZSet().remove(SELL_ORDER_QUEUE, sellOrderList.get(0));
-        }catch (Exception e){
-            log.error("match order error", e);
-        }finally {
-            // 解锁
-            lock.unlock();
+            long end = System.currentTimeMillis();
+            //log.info("match order consume: {} ms", end - begin);
         }
-        long end = System.currentTimeMillis();
-        //log.debug("match order consume: {} ms", end - begin);
     }
 }

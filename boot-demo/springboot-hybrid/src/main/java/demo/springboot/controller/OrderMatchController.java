@@ -44,9 +44,11 @@ public class OrderMatchController {
         // 随机用户id
         int userId = new Random().nextInt(100000);
         // 随机价格
-        BigDecimal price = BigDecimal.valueOf(100).add(BigDecimal.valueOf(new Random().nextInt(20)));
+        BigDecimal price = BigDecimal.valueOf(100).add(BigDecimal.valueOf(new Random().nextInt(20)))
+                                     .add(BigDecimal.valueOf(new Random().nextDouble()).setScale(2, RoundingMode.DOWN));
         // 随机数量
-        BigDecimal amount = BigDecimal.valueOf(new Random().nextDouble()).setScale(2, RoundingMode.DOWN);
+        BigDecimal amount = BigDecimal.valueOf(new Random().nextInt(100))
+                                      .add(BigDecimal.valueOf(new Random().nextDouble()).setScale(2, RoundingMode.DOWN));
         if (amount.compareTo(BigDecimal.ZERO) == 0){
             amount = BigDecimal.ONE;
         }

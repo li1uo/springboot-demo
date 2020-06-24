@@ -10,6 +10,8 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 
 import java.time.Duration;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledFuture;
 
 /**
@@ -34,6 +36,10 @@ public class RedisTaskInit implements CommandLineRunner {
         //ScheduledFuture scheduledFuture = threadPoolTaskScheduler.scheduleAtFixedRate(new RedisTask(redisTemplate), Duration.ofMillis(1000));
 
         // 25ms执行一次撮合任务
-        ScheduledFuture scheduledFuture = threadPoolTaskScheduler.scheduleAtFixedRate(new MatchOrderThread(redisTemplate, rabbitTemplate), Duration.ofMillis(20));
+        //ScheduledFuture scheduledFuture = threadPoolTaskScheduler.scheduleAtFixedRate(new MatchOrderThread(redisTemplate, rabbitTemplate), Duration.ofMillis(20));
+
+        // 新建线程池执行撮合
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
+        executorService.execute(new MatchOrderThread(redisTemplate, rabbitTemplate));
     }
 }
