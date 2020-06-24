@@ -36,7 +36,8 @@ public class MatchOrderServiceImpl extends ServiceImpl<MatchOrderMapper, MatchOr
     @Transactional(rollbackFor = Exception.class)
     @Override
     public boolean matchOrder(EntrustOrder buyOrder, EntrustOrder sellOrder) {
-        if (Objects.isNull(buyOrder) || Objects.isNull(sellOrder) || buyOrder.getOrderStatus() != 1 || sellOrder.getOrderStatus() != 1){
+        if (Objects.isNull(buyOrder) || Objects.isNull(sellOrder) || buyOrder.getOrderStatus() == 0 || sellOrder.getOrderStatus() == 0 ||
+                buyOrder.getOrderStatus() == 3 || sellOrder.getOrderStatus() == 3){
             return true;
         }
 
@@ -56,6 +57,7 @@ public class MatchOrderServiceImpl extends ServiceImpl<MatchOrderMapper, MatchOr
 
         // 修改原委托单
         // 修改买单
+        buyOrder.setOrderStatus(2);
         if (buyOrder.getRemainAmount().compareTo(amount) <= 0){
             buyOrder.setOrderStatus(3);
             buyOrderFlag = false;
@@ -67,6 +69,7 @@ public class MatchOrderServiceImpl extends ServiceImpl<MatchOrderMapper, MatchOr
         }
 
         // 修改卖单
+        sellOrder.setOrderStatus(2);
         if (sellOrder.getRemainAmount().compareTo(amount) <= 0){
             sellOrder.setOrderStatus(3);
             sellOrderFlag = false;

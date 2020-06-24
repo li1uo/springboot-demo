@@ -34,6 +34,6 @@ public class RedisTaskInit implements CommandLineRunner {
         //ScheduledFuture scheduledFuture = threadPoolTaskScheduler.scheduleAtFixedRate(new RedisTask(redisTemplate), Duration.ofMillis(1000));
 
         // 25ms执行一次撮合任务
-        // ScheduledFuture scheduledFuture = threadPoolTaskScheduler.scheduleAtFixedRate(new MatchOrderThread(redisTemplate, rabbitTemplate), Duration.ofMillis(60000));
+        ScheduledFuture scheduledFuture = threadPoolTaskScheduler.scheduleAtFixedRate(new MatchOrderThread(redisTemplate, rabbitTemplate), Duration.ofMillis(20));
     }
 }

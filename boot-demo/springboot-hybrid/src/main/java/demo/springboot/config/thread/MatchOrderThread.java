@@ -51,14 +51,18 @@ public class MatchOrderThread implements Runnable {
             List<Object> sellOrderList = new ArrayList<>(redisTemplate.opsForZSet().range(SELL_ORDER_QUEUE, 0, 0));
 
             if (CollectionUtils.isEmpty(buyOrderList) || CollectionUtils.isEmpty(sellOrderList)){
-                log.info("match order end, 订单处理完毕");
-                return ;
+               // log.info("match order end, 订单处理完毕");
+                return;
             }
 
             // MQ进行订单撮合
             MatchOrderMsg msg = new MatchOrderMsg();
             MatchOrderData buyOrder = (MatchOrderData)buyOrderList.get(0);
             MatchOrderData sellOrder = (MatchOrderData)sellOrderList.get(0);
+
+            if (buyOrder.getUserId().equals(sellOrder.getUserId())){
+                return;
+            }
             msg.setBuyOrder(buyOrder.getOrderNo());
             msg.setSellOrder(sellOrder.getOrderNo());
             rabbitTemplate.convertAndSend("amq.direct", "match_order", JsonUtil.toJson(msg));
@@ -73,6 +77,6 @@ public class MatchOrderThread implements Runnable {
             lock.unlock();
         }
         long end = System.currentTimeMillis();
-        log.info("match order consume: {} ms", end - begin);
+        //log.debug("match order consume: {} ms", end - begin);
     }
 }

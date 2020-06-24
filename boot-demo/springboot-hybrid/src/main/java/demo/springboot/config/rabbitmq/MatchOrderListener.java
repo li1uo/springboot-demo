@@ -43,8 +43,9 @@ public class MatchOrderListener {
             value = @Queue("match_order"),
             exchange = @Exchange(value = "amq.direct", type = ExchangeTypes.DIRECT),
             key = "match_order"
-    ))
+    ), concurrency = "10")
     public void matchOrder(Message message, Channel channel) {
+        long begin = System.currentTimeMillis();
         final long deliveryTag = message.getMessageProperties().getDeliveryTag();
         try {
             MatchOrderMsg msg = JsonUtil.parse(message.getBody(), MatchOrderMsg.class);
@@ -52,7 +53,9 @@ public class MatchOrderListener {
             EntrustOrder buyOrder = entrustOrderService.getOne(Wrappers.<EntrustOrder>lambdaQuery().eq(EntrustOrder::getOrderNo, msg.getBuyOrder()));
             EntrustOrder sellOrder = entrustOrderService.getOne(Wrappers.<EntrustOrder>lambdaQuery().eq(EntrustOrder::getOrderNo, msg.getSellOrder()));
             // 校验订单状态
-            if (Objects.isNull(buyOrder) || Objects.isNull(sellOrder) || buyOrder.getOrderStatus() != 1 || sellOrder.getOrderStatus() != 1){
+            if (Objects.isNull(buyOrder) || Objects.isNull(sellOrder) || buyOrder.getOrderStatus() == 0 || sellOrder.getOrderStatus() == 0 ||
+                    buyOrder.getOrderStatus() == 3 || sellOrder.getOrderStatus() == 3){
+
                 channel.basicAck(deliveryTag, false);
                 return;
             }
@@ -68,5 +71,7 @@ public class MatchOrderListener {
                 log.error("matchOrder recover fail", e1);
             }
         }
+        long end = System.currentTimeMillis();
+        log.info("match_order listener consume: {} ms", end - begin);
     }
 }
