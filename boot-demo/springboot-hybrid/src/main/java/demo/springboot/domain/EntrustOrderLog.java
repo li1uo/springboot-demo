@@ -15,9 +15,6 @@ import lombok.Data;
 @Data
 public class EntrustOrderLog extends BaseEntity {
 
-    @ApiModelProperty("订单id")
-    private Long orderId;
-
     @ApiModelProperty("订单号")
     private String orderNo;
 

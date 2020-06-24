@@ -11,7 +11,7 @@ import lombok.Data;
 @Data
 public class UuidBaseEntity extends AbstractBaseEntity {
 
-    @TableId(value = "id", type = IdType.ID_WORKER)
+    @TableId(value = "id", type = IdType.ID_WORKER_STR)
     private String id;
 
 }

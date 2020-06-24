@@ -81,13 +81,11 @@ public class MatchOrderServiceImpl extends ServiceImpl<MatchOrderMapper, MatchOr
         }
 
         EntrustOrderLog buyLog = new EntrustOrderLog();
-        buyLog.setOrderId(buyOrder.getId());
         buyLog.setOrderNo(buyOrder.getOrderNo());
         buyLog.setType(2);
         logMapper.insert(buyLog);
 
         EntrustOrderLog sellLog = new EntrustOrderLog();
-        sellLog.setOrderId(sellOrder.getId());
         sellLog.setOrderNo(sellOrder.getOrderNo());
         sellLog.setType(2);
         logMapper.insert(sellLog);

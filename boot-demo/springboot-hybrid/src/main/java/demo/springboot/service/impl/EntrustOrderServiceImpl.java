@@ -33,7 +33,6 @@ public class EntrustOrderServiceImpl extends ServiceImpl<EntrustOrderMapper, Ent
 
         // 插入记录
         EntrustOrderLog log = new EntrustOrderLog();
-        log.setOrderId(order.getId());
         log.setOrderNo(order.getOrderNo());
         log.setType(1);
         logMapper.insert(log);
