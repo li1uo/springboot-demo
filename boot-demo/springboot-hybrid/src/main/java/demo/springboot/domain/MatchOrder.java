@@ -1,7 +1,7 @@
 package demo.springboot.domain;
 
 import com.baomidou.mybatisplus.annotation.TableName;
-import demo.springboot.mybatis.domian.BaseEntity;
+import demo.springboot.mybatis.domian.UuidBaseEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 @ApiModel(description = "撮合订单")
 @TableName("t_match_order")
 @Data
-public class MatchOrder extends BaseEntity {
+public class MatchOrder extends UuidBaseEntity {
 
     @ApiModelProperty("买单号")
     private String buyOrderNo;

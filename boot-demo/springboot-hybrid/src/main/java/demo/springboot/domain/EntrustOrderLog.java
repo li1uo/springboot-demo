@@ -1,7 +1,7 @@
 package demo.springboot.domain;
 
 import com.baomidou.mybatisplus.annotation.TableName;
-import demo.springboot.mybatis.domian.BaseEntity;
+import demo.springboot.mybatis.domian.UuidBaseEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -13,7 +13,7 @@ import lombok.Data;
 @ApiModel(description = "委托订单记录")
 @TableName("t_entrust_order_log")
 @Data
-public class EntrustOrderLog extends BaseEntity {
+public class EntrustOrderLog extends UuidBaseEntity {
 
     @ApiModelProperty("订单号")
     private String orderNo;
