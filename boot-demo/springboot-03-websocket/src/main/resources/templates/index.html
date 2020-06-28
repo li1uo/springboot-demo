@@ -16,12 +16,12 @@
         let stompClient = Stomp.over(socket);
 
         // 获取session的userName
-        let userName = [[${userName}]];
+        let token = [[${token}]];
 
         // 向服务器发起websocket连接并发送CONNECT帧
         stompClient.connect(
             {
-                name : userName
+                token : token
             },
             function connectCallback(frame) {
                 // 连接成功时（服务器响应 CONNECTED 帧）的回调方法
@@ -30,7 +30,7 @@
                 stompClient.subscribe('/user/queue/msg', function (response) {
                     setMessageInnerHTML("已成功订阅/msg");
                     var returnData = JSON.parse(response.body);
-                    setMessageInnerHTML("/user/" + userName + "/msg 你接收到的消息为:" + returnData.msg);
+                    setMessageInnerHTML("/user/queue/msg 你接收到的消息为:" + returnData.msg);
                 });
             },
             function errorCallBack(error) {

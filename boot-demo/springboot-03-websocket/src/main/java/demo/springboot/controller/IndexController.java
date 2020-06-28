@@ -1,10 +1,12 @@
 package demo.springboot.controller;
 
+import demo.springboot.util.TokenUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.UUID;
 
 /**
  * @author LILUO
@@ -16,7 +18,10 @@ public class IndexController {
 
     @GetMapping("/index")
     public String index(HttpServletRequest request){
-        request.setAttribute("userName","liluo");
+        String userName = UUID.randomUUID().toString().replaceAll("-", "");
+        String token = TokenUtil.generate(userName);
+        request.setAttribute("token", token);
+        request.getSession().setAttribute("userName", userName);
         return "index";
     }
 

@@ -1,6 +1,7 @@
 package demo.springboot.config;
 
 import demo.springboot.domain.AbstractMessageDto;
+import demo.springboot.domain.UserPrincipal;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -28,12 +29,12 @@ public class WebSocketController {
      * @param messageDto
      */
     @MessageMapping(value = "/send")
-    public void receiveMessage(AbstractMessageDto messageDto){
+    public void receiveMessage(UserPrincipal principal, AbstractMessageDto messageDto){
 
         log.info("receive client msg: {}", messageDto.getMsg());
 
         // sendToUser 目标地址最后还是会转换成/user/liluo/queue/msg
-         messagingTemplate.convertAndSendToUser("liluo","/queue/msg", new AbstractMessageDto("你发送的消息为:" + messageDto.getMsg()));
+         messagingTemplate.convertAndSendToUser(principal.getName(),"/queue/msg", new AbstractMessageDto("你发送的消息为:" + messageDto.getMsg()));
         //return new AbstractMessageDto("你发送的消息为: " + messageDto.getMsg());
     }
 

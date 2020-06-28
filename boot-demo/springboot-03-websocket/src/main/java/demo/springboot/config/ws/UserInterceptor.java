@@ -1,6 +1,7 @@
 package demo.springboot.config.ws;
 
 import demo.springboot.domain.UserPrincipal;
+import demo.springboot.util.TokenUtil;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
@@ -21,8 +22,6 @@ import java.util.Map;
 @Deprecated
 public class UserInterceptor implements ChannelInterceptor {
 
-    public static final String USER_FLAG = "name";
-
     /**
      * 消息拦截器, 在向客户端发送消息前进入此方法
      *
@@ -39,12 +38,12 @@ public class UserInterceptor implements ChannelInterceptor {
             Object raw = message.getHeaders().get(SimpMessageHeaderAccessor.NATIVE_HEADERS);
             if (raw instanceof Map) {
                 // 拿到请求头中的token参数 客户端中定义了该参数的user标识
-                Object name = ((Map) raw).get(USER_FLAG);
+                Object name = ((Map) raw).get(TokenUtil.USER_FLAG);
                 if (name instanceof LinkedList) {
                     // 设置当前访问器的认证用户
-                    accessor.setUser(new UserPrincipal(((LinkedList) name).get(0).toString()));
+                    accessor.setUser(new UserPrincipal(TokenUtil.parse(((LinkedList) name).get(0).toString())));
                 }else{
-                    accessor.setUser(new UserPrincipal(name.toString()));
+                    accessor.setUser(new UserPrincipal(TokenUtil.parse(name.toString())));
                 }
             }
         }
