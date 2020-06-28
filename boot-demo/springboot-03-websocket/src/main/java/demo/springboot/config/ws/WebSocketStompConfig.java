@@ -1,6 +1,5 @@
-package demo.springboot.config;
+package demo.springboot.config.ws;
 
-import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.ChannelRegistration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
@@ -14,12 +13,9 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
  * @author LILUO
  * @date 2020/06/27
  */
-@AllArgsConstructor
 @Configuration
 @EnableWebSocketMessageBroker
 public class WebSocketStompConfig implements WebSocketMessageBrokerConfigurer {
-
-    private UserInterceptor userInterceptor;
 
     /**
      * 注册stomp的端点
@@ -30,9 +26,9 @@ public class WebSocketStompConfig implements WebSocketMessageBrokerConfigurer {
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         // 允许使用socketJs方式访问, 访问点为webSocketServer, 允许跨域
         // 在网页上我们就可以通过这个链接 http://localhost:8080/webSocketServer 来和服务器的WebSocket连接
-        registry.addEndpoint("/webSocketServer").setAllowedOrigins("*")
-                 .setHandshakeHandler(new CustomHandshakeHandler())
-                 .addInterceptors(new CustomHandShakeInterceptor())
+        registry.addEndpoint("/ws").setAllowedOrigins("*")
+                 /*.setHandshakeHandler(new CustomHandshakeHandler())
+                 .addInterceptors(new CustomHandShakeInterceptor())*/
                  .withSockJS();
     }
 
@@ -54,6 +50,6 @@ public class WebSocketStompConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
     public void configureClientInboundChannel(ChannelRegistration registration) {
-        registration.interceptors(userInterceptor);
+        registration.interceptors(new UserInterceptor());
     }
 }
