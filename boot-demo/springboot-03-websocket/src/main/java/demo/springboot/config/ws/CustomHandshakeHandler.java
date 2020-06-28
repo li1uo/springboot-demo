@@ -18,6 +18,6 @@ public class CustomHandshakeHandler extends DefaultHandshakeHandler {
 
     @Override
     protected Principal determineUser(ServerHttpRequest request, WebSocketHandler wsHandler, Map<String, Object> attributes) {
-        return new UserPrincipal((String)attributes.get("name"));
+        return new UserPrincipal((String)attributes.get("user"));
     }
 }
