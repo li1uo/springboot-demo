@@ -10,11 +10,13 @@ import java.io.Serializable;
  * @date 2020/02/02
  */
 @Data
-public class AbstractMessageDto implements Serializable {
+public class ClientMessageDto implements Serializable {
 
-    public AbstractMessageDto(){}
+    public ClientMessageDto() {
 
-    public AbstractMessageDto(String msg){
+    }
+
+    public ClientMessageDto(String msg) {
         this.msg = msg;
     }
 

@@ -29,7 +29,14 @@
                     // 订阅成功后, 每次回调方法
                     var returnData = JSON.parse(response.body);
                     if (returnData){
-                       setMessageInnerHTML(returnData.msg);
+                       setMessageInnerHTML(returnData);
+                    }
+                });
+
+                stompClient.subscribe('/topic/subscribe', function (response) {
+                    var returnData = JSON.parse(response.body);
+                    if (returnData){
+                        setMessageInnerHTML(returnData);
                     }
                 });
             },
@@ -46,41 +53,24 @@
             stompClient.send("/send", {}, messageJson);
         }
 
-        // 订阅消息
-        function subscribe1() {
-            stompClient.subscribe('/topic/subscribe', function (response) {
-                var returnData = JSON.parse(response.body);
-                if (returnData){
-                    setMessageInnerHTML(returnData.msg);
-                }
-            });
-        }
-
-        // 订阅消息
-        function subscribe2() {
-            stompClient.subscribe('/topic/send', function (response) {
-                var returnData = JSON.parse(response.body);
-                if (returnData){
-                    setMessageInnerHTML(returnData.msg);
-                }
-            });
-        }
-
         // 将消息显示在网页上
-        function setMessageInnerHTML(innerHTML) {
-            $("#message").append(innerHTML + "<br/>")
+        function setMessageInnerHTML(result) {
+            var data = "<div>" +
+                        "<p><span style='width: 150px; display: inline-block'>" + result.sendUserName + "</span>" + result.sendTime + "</p>" +
+                        "<p style='margin-left: 50px'>" + result.msg + "</p>" +
+                        "</div>";
+            $("#message").append(data)
         }
 
     </script>
 </head>
 <body>
-Welcome<br/><input id="text" type="text" />
-<button onclick="send()">发送消息</button>
-<button onclick="subscribe2()">订阅消息/topic/send</button>
-<button onclick="subscribe1()">订阅消息/topic/subscribe</button>
-<hr/>
-<button onclick="closeWebSocket()">关闭WebSocket连接</button>
-<hr/>
+Welcome<br/>
 <div id="message"></div>
+<hr/>
+<input id="text" type="text" />
+<button onclick="send()">发送消息</button>
+<button onclick="closeWebSocket()">离线</button>
+<hr/>
 </body>
 </html>

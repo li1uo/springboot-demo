@@ -1,13 +1,17 @@
 package demo.springboot.config;
 
-import demo.springboot.domain.AbstractMessageDto;
+import demo.springboot.domain.ClientMessageDto;
+import demo.springboot.domain.SeverMessageDto;
 import demo.springboot.domain.UserPrincipal;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.messaging.simp.annotation.SubscribeMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.time.LocalDateTime;
 
 
 /**
@@ -22,20 +26,17 @@ public class WebSocketController {
     private SimpMessagingTemplate messagingTemplate;
 
     /**
-     * stomp send方法触发
-     *
-     * 与requestMapping同级
+     * 处理stomp send方法事件
      *
      * @param messageDto
      */
     @MessageMapping(value = "/send")
-    public void receiveMessage(UserPrincipal principal, AbstractMessageDto messageDto){
+    @SendTo("/topic/subscribe")
+    public SeverMessageDto receiveMessage(UserPrincipal principal, ClientMessageDto messageDto){
 
-        log.info("receive client msg: {}", messageDto.getMsg());
-
+        return new SeverMessageDto(messageDto.getMsg(), principal.getName(), LocalDateTime.now());
         // sendToUser 目标地址最后还是会转换成/user/liluo/queue/msg
-         messagingTemplate.convertAndSendToUser(principal.getName(),"/queue/msg", new AbstractMessageDto("你发送的消息为:" + messageDto.getMsg()));
-        //return new AbstractMessageDto("你发送的消息为: " + messageDto.getMsg());
+        // messagingTemplate.convertAndSendToUser(principal.getName(),"/queue/msg", new ClientMessageDto("你发送的消息为:" + messageDto.getMsg()));
     }
 
     /**
@@ -44,10 +45,8 @@ public class WebSocketController {
      * @return
      */
     @SubscribeMapping("/topic/subscribe")
-    public AbstractMessageDto subTopic() {
+    public void subTopic() {
         log.info("add user subscribe...");
-
-        return new AbstractMessageDto("subscribe node /topic/subscribe success!");
     }
 
     /**
@@ -56,9 +55,7 @@ public class WebSocketController {
      * @return
      */
     @SubscribeMapping("/user/queue/msg")
-    public AbstractMessageDto onSub() {
+    public void onSub() {
         log.info("add user subscribe...");
-
-        return new AbstractMessageDto("subscribe node /user/queue/msg success!");
     }
 }

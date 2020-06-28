@@ -1,5 +1,7 @@
 package demo.springboot.util;
 
+import lombok.SneakyThrows;
+
 import java.util.Base64;
 
 /**
@@ -27,6 +29,6 @@ public class TokenUtil {
      * @return
      */
     public static String parse(String token){
-        return Base64.getDecoder().decode(token).toString();
+        return new String(Base64.getDecoder().decode(token));
     }
 }
