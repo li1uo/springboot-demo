@@ -29,14 +29,21 @@
                     // 订阅成功后, 每次回调方法
                     var returnData = JSON.parse(response.body);
                     if (returnData){
-                       setMessageInnerHTML(returnData);
+                        showMsg(returnData);
                     }
                 });
 
                 stompClient.subscribe('/topic/subscribe', function (response) {
                     var returnData = JSON.parse(response.body);
                     if (returnData){
-                        setMessageInnerHTML(returnData);
+                        showMsg(returnData);
+                    }
+                });
+
+                stompClient.subscribe('/topic/member', function (response) {
+                    var returnData = JSON.parse(response.body);
+                    if (returnData){
+                        showMember(returnData);
                     }
                 });
             },
@@ -54,11 +61,18 @@
         }
 
         // 将消息显示在网页上
-        function setMessageInnerHTML(result) {
+        function showMsg(result) {
             var data = "<div>" +
                         "<p><span style='width: 150px; display: inline-block'>" + result.sendUserName + "</span>" + result.sendTime + "</p>" +
                         "<p style='margin-left: 50px'>" + result.msg + "</p>" +
                         "</div>";
+            $("#message").append(data)
+        }
+
+        function showMember(result) {
+            var data = "<div>" +
+                       "<p style='text-align: center'> " + result.member + " connected </p>" +
+                       "</div>";
             $("#message").append(data)
         }
 
