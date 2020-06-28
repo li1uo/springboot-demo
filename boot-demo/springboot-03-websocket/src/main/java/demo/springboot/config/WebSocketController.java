@@ -47,7 +47,7 @@ public class WebSocketController {
     public AbstractMessageDto subTopic() {
         log.info("add user subscribe...");
 
-        return new AbstractMessageDto("感谢你订阅了我。。。");
+        return new AbstractMessageDto("subscribe node /topic/subscribe success!");
     }
 
     /**
@@ -59,6 +59,6 @@ public class WebSocketController {
     public AbstractMessageDto onSub() {
         log.info("add user subscribe...");
 
-        return new AbstractMessageDto("感谢你订阅了我。。。");
+        return new AbstractMessageDto("subscribe node /user/queue/msg success!");
     }
 }

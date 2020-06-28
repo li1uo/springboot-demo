@@ -24,49 +24,51 @@
             {},
             function connectCallback(frame) {
                 // 连接成功时（服务器响应 CONNECTED 帧）的回调方法
-                setMessageInnerHTML("连接成功");
                 // 订阅时,如果是用户一对一订阅 不需要带上userName,直接/user/queue/*即可 /queue/*为订阅目标
                 stompClient.subscribe('/user/queue/msg', function (response) {
-                    setMessageInnerHTML("已成功订阅/msg");
+                    // 订阅成功后, 每次回调方法
                     var returnData = JSON.parse(response.body);
-                    setMessageInnerHTML("/user/queue/msg 你接收到的消息为:" + returnData.msg);
+                    if (returnData){
+                       setMessageInnerHTML(returnData.msg);
+                    }
                 });
             },
             function errorCallBack(error) {
                 // 连接失败时（服务器响应 ERROR 帧）的回调方法
-                setMessageInnerHTML("连接失败");
+                console.log("连接失败");
             }
         );
 
-        //发送消息
+        // 发送消息
         function send() {
-            var message = document.getElementById('text').value;
+            var message = $("#text").val();
             var messageJson = JSON.stringify({ "msg": message });
             stompClient.send("/send", {}, messageJson);
-            setMessageInnerHTML("/send 你发送的消息:" + message);
         }
 
-        //订阅消息
+        // 订阅消息
         function subscribe1() {
             stompClient.subscribe('/topic/subscribe', function (response) {
-                setMessageInnerHTML("已成功订阅/topic/subscribe");
                 var returnData = JSON.parse(response.body);
-                setMessageInnerHTML("/topic/subscribe 你接收到的消息为:" + returnData.msg);
+                if (returnData){
+                    setMessageInnerHTML(returnData.msg);
+                }
             });
         }
 
-        //订阅消息
+        // 订阅消息
         function subscribe2() {
             stompClient.subscribe('/topic/send', function (response) {
-                setMessageInnerHTML("已成功订阅/topic/send");
                 var returnData = JSON.parse(response.body);
-                setMessageInnerHTML("/topic/send 你接收到的消息为:" + returnData.msg);
+                if (returnData){
+                    setMessageInnerHTML(returnData.msg);
+                }
             });
         }
 
-        //将消息显示在网页上
+        // 将消息显示在网页上
         function setMessageInnerHTML(innerHTML) {
-            document.getElementById('message').innerHTML += innerHTML + '<br/>';
+            $("#message").append(innerHTML + "<br/>")
         }
 
     </script>
@@ -74,8 +76,8 @@
 <body>
 Welcome<br/><input id="text" type="text" />
 <button onclick="send()">发送消息</button>
-<button onclick="subscribe2()">订阅消息/topic/sendTest</button>
-<button onclick="subscribe1()">订阅消息/topic/subscribeTest</button>
+<button onclick="subscribe2()">订阅消息/topic/send</button>
+<button onclick="subscribe1()">订阅消息/topic/subscribe</button>
 <hr/>
 <button onclick="closeWebSocket()">关闭WebSocket连接</button>
 <hr/>
