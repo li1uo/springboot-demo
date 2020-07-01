@@ -20,6 +20,7 @@
 		<module>springboot-starter-boot</module>
 		<module>springboot-starter-cloud</module>
 		<module>springboot-starter-db</module>
+		<module>springboot-starter-web</module>
 		<module>springboot-starter-log</module>
 		<module>springboot-starter-mybatis</module>
 		<module>springboot-starter-redis</module>
