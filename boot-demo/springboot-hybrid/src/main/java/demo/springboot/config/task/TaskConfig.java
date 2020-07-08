@@ -28,7 +28,7 @@ public class TaskConfig {
     /**
      * 监控撮合队列
      */
-    @Scheduled(cron = "0/1 * * * * ?")
+   // @Scheduled(cron = "0/1 * * * * ?")
     public void monitorMatchQueue(){
         long buyCount = redisTemplate.opsForZSet().zCard(MatchOrderThread.BUY_ORDER_QUEUE);
         long sellCount = redisTemplate.opsForZSet().zCard(MatchOrderThread.SELL_ORDER_QUEUE);

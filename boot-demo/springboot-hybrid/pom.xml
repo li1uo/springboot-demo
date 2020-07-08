@@ -116,6 +116,11 @@
             <artifactId>springboot-starter-tool</artifactId>
             <version>${springboot.demo.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-text</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

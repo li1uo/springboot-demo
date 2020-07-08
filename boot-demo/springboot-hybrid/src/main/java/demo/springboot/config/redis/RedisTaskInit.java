@@ -40,6 +40,6 @@ public class RedisTaskInit implements CommandLineRunner {
 
         // 新建线程池执行撮合
         ExecutorService executorService = Executors.newSingleThreadExecutor();
-        executorService.execute(new MatchOrderThread(redisTemplate, rabbitTemplate));
+        //executorService.execute(new MatchOrderThread(redisTemplate, rabbitTemplate));
     }
 }
