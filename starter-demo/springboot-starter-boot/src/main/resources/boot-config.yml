@@ -1,1 +1,5 @@
-
+# 日期格式化(未进行全局objectMapper指定时 可此种格式化date)
+#spring:
+#  jackson:
+#    time-zone: GMT+8
+#    date-format: yyyy-MM-dd HH:mm:ss

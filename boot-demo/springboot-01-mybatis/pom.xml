@@ -15,8 +15,9 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
+			<groupId>demo.springboot</groupId>
+			<artifactId>springboot-starter-web</artifactId>
+			<version>${springboot.demo.version}</version>
 		</dependency>
 
 		<dependency>
