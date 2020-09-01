@@ -1,0 +1,31 @@
+# sharding-jdbc配置
+spring:
+  shardingsphere:
+    # 数据源配置
+    datasource:
+      names: ds0
+      ds0:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/springboot-demo?characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true
+        username: root
+        password: root
+    # 分片配置
+    sharding:
+      tables:
+        share_user:
+          actual-data-nodes: ds0.share_user_$->{0..1}
+          table-strategy:
+            inline:
+              sharding-column: id
+              algorithm-expression: share_user_$->{id % 2}
+          key-generator:
+            column: id
+            type: SNOWFLAKE
+
+
+
+logging:
+  level:
+    demo:
+      springboot: debug
