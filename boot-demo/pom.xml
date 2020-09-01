@@ -15,6 +15,7 @@
 	<packaging>pom</packaging>
 
 	<modules>
+		<module>springboot-00-template</module>
 		<module>springboot-hybrid</module>
 		<module>springboot-01-mybatis</module>
 		<module>springboot-02-mycat</module>
