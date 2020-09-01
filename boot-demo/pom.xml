@@ -27,6 +27,7 @@
 		<module>springboot-09-nacos</module>
 		<module>springboot-10-jwt</module>
 		<module>springboot-11-elasticsearch</module>
+		<module>springboot-12-sharding</module>
 	</modules>
 
 	<build>
