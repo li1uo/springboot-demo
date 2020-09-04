@@ -1,11 +1,11 @@
 package demo.springboot.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import demo.springboot.domain.User;
+import demo.springboot.domain.Order;
 
 /**
  * @author LILUO
- * @date 2020/09/01
+ * @date 2020/09/04
  */
-public interface IUserService extends IService<User> {
+public interface IOrderService extends IService<Order> {
 }

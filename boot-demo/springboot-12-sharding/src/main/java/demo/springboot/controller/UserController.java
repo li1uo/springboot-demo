@@ -1,7 +1,7 @@
 package demo.springboot.controller;
 
 import demo.springboot.common.domain.Result;
-import demo.springboot.domain.ShareUser;
+import demo.springboot.domain.User;
 import demo.springboot.service.IUserService;
 import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
@@ -26,13 +26,13 @@ public class UserController {
 
     @PostMapping("/create")
     public Result create(){
-        ShareUser user = new ShareUser();
+        User user = new User();
         user.setUserName(StringUtils.replace(UUID.randomUUID().toString(), "-", ""));
         return Result.status(userService.save(user));
     }
 
     @GetMapping("/list")
-    public Result<List<ShareUser>> list(){
+    public Result<List<User>> list(){
         return Result.data(userService.list());
     }
 }

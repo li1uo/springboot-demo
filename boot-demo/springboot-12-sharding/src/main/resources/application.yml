@@ -13,6 +13,7 @@ spring:
     # 分片配置
     sharding:
       tables:
+        # 用户表
         share_user:
           actual-data-nodes: ds0.share_user_$->{0..1}
           table-strategy:
@@ -22,6 +23,17 @@ spring:
           key-generator:
             column: id
             type: SNOWFLAKE
+        # 订单表
+        share_order:
+          actual-data-nodes: ds0.share_order
+          table-strategy:
+            complex:
+              sharding-columns: base_symbol, quote_symbol
+              algorithm-class-name: demo.springboot.config.sharding.OrderShardingAlgorithm
+          key-generator:
+            column: id
+            type: SNOWFLAKE
+      default-data-source-name: ds0
 
 
 

@@ -1,5 +1,6 @@
 package demo.springboot.domain;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.Version;
@@ -9,16 +10,20 @@ import java.util.Date;
 
 /**
  * @author LILUO
- * @date 2020/09/01
+ * @date 2020/09/04
  */
-@TableName("share_user")
+@TableName("share_order")
 @Data
-public class ShareUser {
+public class Order {
 
-    @TableId
+    @TableId(value = "id", type = IdType.ID_WORKER)
     private Long id;
 
-    private String userName;
+    private String baseSymbol;
+
+    private String quoteSymbol;
+
+    private String symbol;
 
     private Date createTime;
 

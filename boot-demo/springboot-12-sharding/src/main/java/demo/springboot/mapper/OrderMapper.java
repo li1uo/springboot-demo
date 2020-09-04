@@ -1,11 +1,11 @@
 package demo.springboot.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import demo.springboot.domain.User;
+import demo.springboot.domain.Order;
 
 /**
  * @author LILUO
- * @date 2020/09/01
+ * @date 2020/09/04
  */
-public interface UserMapper extends BaseMapper<User> {
+public interface OrderMapper extends BaseMapper<Order> {
 }
