@@ -1,24 +1,23 @@
-package demo.config;
+package demo.springboot.config;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.annotation.KafkaListener;
-import org.springframework.stereotype.Component;
 
 /**
- * kafka监听任务
+ * kafka监听器
+ *
  * @author LILUO
- * @date 2018/8/13
+ * @date 2020/10/04
  */
-@Component
+@Slf4j
+@Configuration
 public class KafkaListenerConfig {
-
-    private Logger logger = LoggerFactory.getLogger(KafkaListenerConfig.class);
 
     @KafkaListener(topics = {"test"}, groupId = "test-topic")
     public void receive(ConsumerRecord consumerRecord){
-        logger.error("消费者1: Receive: {}", consumerRecord.value());
+        log.error("消费者1: Receive: {}", consumerRecord.value());
     }
 
     /*@KafkaListener(topics = {"test"}, groupId = "test-topic-2")

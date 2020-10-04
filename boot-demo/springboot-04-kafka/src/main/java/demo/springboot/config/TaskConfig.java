@@ -1,33 +1,30 @@
-package demo.config;
+package demo.springboot.config;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.kafka.annotation.EnableKafka;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
 import org.springframework.util.concurrent.ListenableFuture;
 
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * 定时任务向kafka中传送数据
+ * 定时任务
+ *
  * @author LILUO
- * @date 2018/8/13
+ * @date 2020/10/04
  */
-@EnableKafka
+@Slf4j
+@AllArgsConstructor
 @EnableScheduling
-@Component
+@Configuration
 public class TaskConfig {
-
-    private Logger logger = LoggerFactory.getLogger(TaskConfig.class);
 
     private static AtomicInteger num = new AtomicInteger(0);
 
-    @Autowired
     private KafkaTemplate kafkaTemplate;
 
     /**
