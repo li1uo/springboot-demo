@@ -15,18 +15,13 @@ import org.springframework.kafka.annotation.KafkaListener;
 @Configuration
 public class KafkaListenerConfig {
 
-    @KafkaListener(topics = {"test"}, groupId = "test-topic")
+    @KafkaListener(topics = {"test-topic"}, groupId = "test-topic")
     public void receive(ConsumerRecord consumerRecord){
-        log.error("消费者1: Receive: {}", consumerRecord.value());
+        log.debug("消费者1: Receive: {}", consumerRecord.value());
     }
 
-    /*@KafkaListener(topics = {"test"}, groupId = "test-topic-2")
+    /*@KafkaListener(topics = {"test-topic"}, groupId = "test-topic-2")
     public void receive2(String content){
-        logger.error("消费者2: Receive: {}", content);
-    }
-
-    @KafkaListener(topics = {"test"}, groupId = "test-topic-3")
-    public void receive3(String content){
-        logger.error("消费者3: Receive: {}", content);
+        log.debug("消费者2: Receive: {}", content);
     }*/
 }

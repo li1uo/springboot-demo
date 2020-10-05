@@ -1,0 +1,10 @@
+# 日志等级
+logging:
+  level:
+    demo.springboot: debug
+
+#spring:
+#    kafka:
+#      bootstrap-servers: localhost:9092
+#      consumer:
+#        bootstrap-servers: localhost:9092
