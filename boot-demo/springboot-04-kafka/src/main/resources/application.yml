@@ -3,8 +3,17 @@ logging:
   level:
     demo.springboot: debug
 
-#spring:
-#    kafka:
-#      bootstrap-servers: localhost:9092
-#      consumer:
-#        bootstrap-servers: localhost:9092
+spring:
+    kafka:
+      bootstrap-servers: localhost:9092
+      consumer:
+        # 是否自动确认
+        enable-auto-commit: true
+        # 自动确认间隔
+        auto-commit-interval: 1000
+        # 偏移量自动重置
+        # 当kafka中没有初始offset或offset超出范围时将自动重置offset
+        # earliest:重置为分区中最小的offset;
+        # latest:重置为分区中最新的offset(消费分区中新产生的数据);
+        # none:只要有一个分区不存在已提交的offset,就抛出异常;
+        auto-offset-reset: latest

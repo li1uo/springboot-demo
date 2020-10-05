@@ -24,7 +24,7 @@ public class TaskConfig {
 
     private KafkaTemplate kafkaTemplate;
 
-    @Scheduled(cron = "0/3 * * * * ?")
+    //@Scheduled(cron = "0/3 * * * * ?")
     public void sendMessageToKafka(){
         String message = UUID.randomUUID().toString();
         ListenableFuture future = kafkaTemplate.send("test-topic", message);

@@ -15,12 +15,14 @@ import org.springframework.kafka.annotation.KafkaListener;
 @Configuration
 public class KafkaListenerConfig {
 
-    @KafkaListener(topics = {"test-topic"}, groupId = "test-topic")
+    public static final String DEFAULT_TOPIC = "test-topic";
+
+    @KafkaListener(topics = {DEFAULT_TOPIC}, groupId = "test-topic")
     public void receive(ConsumerRecord consumerRecord){
         log.debug("消费者1: Receive: {}", consumerRecord.value());
     }
 
-    /*@KafkaListener(topics = {"test-topic"}, groupId = "test-topic-2")
+    /*@KafkaListener(topics = {DEFAULT_TOPIC}, groupId = "test-topic-2")
     public void receive2(String content){
         log.debug("消费者2: Receive: {}", content);
     }*/
