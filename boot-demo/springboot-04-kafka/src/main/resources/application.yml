@@ -6,6 +6,12 @@ logging:
 spring:
     kafka:
       bootstrap-servers: localhost:9092
+      producer:
+        retries: 0
+        batch-size: 16384
+        buffer-memory: 33554432
+        key-serializer: org.apache.kafka.common.serialization.StringSerializer
+        value-serializer: org.apache.kafka.common.serialization.StringSerializer
       consumer:
         # 是否自动确认
         enable-auto-commit: true
@@ -17,3 +23,10 @@ spring:
         # latest:重置为分区中最新的offset(消费分区中新产生的数据);
         # none:只要有一个分区不存在已提交的offset,就抛出异常;
         auto-offset-reset: latest
+        key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+        value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+        properties:
+            session.timeout.ms: 60000
+      listener:
+        log-container-config: false
+        concurrency: 5
