@@ -21,6 +21,25 @@
 		</dependency>
 
 		<dependency>
+			<groupId>demo.springboot</groupId>
+			<artifactId>springboot-common</artifactId>
+			<version>${springboot.demo.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>demo.springboot</groupId>
+			<artifactId>springboot-starter-db</artifactId>
+			<version>${springboot.demo.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>demo.springboot</groupId>
+			<artifactId>springboot-starter-mybatis</artifactId>
+			<version>${springboot.demo.version}</version>
+		</dependency>
+
+
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>

@@ -34,7 +34,14 @@ public enum ResultCode implements IResultCode {
     /**
      * 数量不足
      */
-    AMOUNT_NOT_ENOUGH(10001, "数量不足");
+    AMOUNT_NOT_ENOUGH(10001, "数量不足"),
+
+    /**
+     * 用户不存在
+     */
+    USER_NOT_EXISTS(10002, "用户不存在"),
+
+    ;
 
     final int code;
 
