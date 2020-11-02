@@ -16,8 +16,8 @@
 
 	<modules>
 		<module>springboot-00-template</module>
-		<module>springboot-hybrid</module>
 		<module>springboot-01-mybatis</module>
+		<module>springboot-02-security</module>
 		<module>springboot-03-websocket</module>
 		<module>springboot-04-kafka</module>
 		<module>springboot-06-quartz</module>
@@ -27,6 +27,7 @@
 		<module>springboot-10-jwt</module>
 		<module>springboot-11-elasticsearch</module>
 		<module>springboot-12-sharding</module>
+		<module>springboot-hybrid</module>
 	</modules>
 
 	<build>
