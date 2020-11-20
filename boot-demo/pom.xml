@@ -27,6 +27,7 @@
 		<module>springboot-10-jwt</module>
 		<module>springboot-11-elasticsearch</module>
 		<module>springboot-12-sharding</module>
+		<module>springboot-13-jdbc</module>
 		<module>springboot-hybrid</module>
 	</modules>
 
