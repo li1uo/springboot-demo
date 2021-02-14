@@ -28,11 +28,13 @@ public class RocketUtil {
     public static synchronized void createConsumer(RocketConfig config) {
         String consumerGroup = config.getConsumerGroup();
         String topic = config.getTopic();
-        String name = String.format("%s_%s", consumerGroup, topic);
+        String name = String.format("%s_%s_%s", consumerGroup, topic, config.getTag());
+        log.info("create consumer, name: {}", name);
         consumerMap.put(name, initConsumer(config));
     }
 
     public static synchronized void close(String name) {
+        log.info("remove consumer, name: {}", name);
         consumerMap.get(name).shutdown();
         consumerMap.remove(name);
     }

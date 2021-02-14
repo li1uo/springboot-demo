@@ -37,6 +37,6 @@ public class RocketController {
 
     @PostMapping("/config/del")
     public Result delete(RocketConfig rocketConfig) {
-        return Result.status(rocketConfigService.deleteConfig(rocketConfig.getConsumerGroup(), rocketConfig.getTopic()));
+        return Result.status(rocketConfigService.deleteConfig(rocketConfig.getConsumerGroup(), rocketConfig.getTopic(), rocketConfig.getTag()));
     }
 }

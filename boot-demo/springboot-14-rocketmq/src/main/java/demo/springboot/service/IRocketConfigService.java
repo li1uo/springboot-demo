@@ -11,5 +11,5 @@ public interface IRocketConfigService {
 
     boolean addConfig(RocketConfig config);
 
-    boolean deleteConfig(String consumerGroup, String topic);
+    boolean deleteConfig(String consumerGroup, String topic, String tag);
 }

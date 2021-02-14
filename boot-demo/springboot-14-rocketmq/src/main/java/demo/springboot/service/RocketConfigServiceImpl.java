@@ -19,9 +19,9 @@ public class RocketConfigServiceImpl implements IRocketConfigService {
     }
 
     @Override
-    public boolean deleteConfig(String consumerGroup, String topic) {
+    public boolean deleteConfig(String consumerGroup, String topic, String tag) {
 
-        String name = String.format("%s_%s", consumerGroup, topic);
+        String name = String.format("%s_%s_%s", consumerGroup, topic, tag);
         RocketUtil.close(name);
         return true;
     }
