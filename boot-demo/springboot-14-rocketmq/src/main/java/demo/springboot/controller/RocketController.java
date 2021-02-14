@@ -1,8 +1,11 @@
 package demo.springboot.controller;
 
 import demo.springboot.common.domain.Result;
+import demo.springboot.domian.RocketConfig;
+import demo.springboot.service.IRocketConfigService;
 import lombok.AllArgsConstructor;
 import org.apache.rocketmq.spring.core.RocketMQTemplate;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,9 +22,21 @@ public class RocketController {
 
     private RocketMQTemplate rocketMQTemplate;
 
+    private IRocketConfigService rocketConfigService;
+
     @RequestMapping("/push")
     public Result push() {
         rocketMQTemplate.convertAndSend(ROCKET_DESTINATION, System.currentTimeMillis());
         return Result.success();
+    }
+
+    @PostMapping("/config/add")
+    public Result add(RocketConfig rocketConfig) {
+        return Result.status(rocketConfigService.addConfig(rocketConfig));
+    }
+
+    @PostMapping("/config/del")
+    public Result delete(RocketConfig rocketConfig) {
+        return Result.status(rocketConfigService.deleteConfig(rocketConfig.getConsumerGroup(), rocketConfig.getTopic()));
     }
 }

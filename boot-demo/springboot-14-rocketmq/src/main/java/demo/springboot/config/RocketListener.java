@@ -1,4 +1,4 @@
-package demo.springboot.config.rocket;
+package demo.springboot.config;
 
 import demo.springboot.controller.RocketController;
 import lombok.extern.slf4j.Slf4j;
@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 public class RocketListener {
 
     @RocketMQMessageListener(consumerGroup = "consumer-group-1", topic = RocketController.ROCKET_DESTINATION, selectorExpression = "*", messageModel = MessageModel.CLUSTERING)
-    @Service
+   // @Service
     public class consumer implements RocketMQListener<String> {
         @Override
         public void onMessage(String s) {
@@ -26,7 +26,7 @@ public class RocketListener {
     }
 
     @RocketMQMessageListener(consumerGroup = "consumer-group-2", topic = RocketController.ROCKET_DESTINATION, selectorExpression = "*", messageModel = MessageModel.CLUSTERING)
-    @Service
+   // @Service
     public class consumer2 implements RocketMQListener<String> {
         @Override
         public void onMessage(String s) {
