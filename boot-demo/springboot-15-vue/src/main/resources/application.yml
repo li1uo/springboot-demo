@@ -1,0 +1,5 @@
+spring:
+  # templates 模板引擎配置
+  thymeleaf:
+    # 不进未关闭标签检查，需配合nekohtml使用
+    mode: LEGACYHTML5
