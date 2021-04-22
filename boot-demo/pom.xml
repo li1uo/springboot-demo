@@ -30,6 +30,7 @@
 		<module>springboot-13-jdbc</module>
 		<module>springboot-14-rocketmq</module>
 		<module>springboot-15-vue</module>
+		<module>springboot-16-security</module>
 		<module>springboot-hybrid</module>
 	</modules>
 

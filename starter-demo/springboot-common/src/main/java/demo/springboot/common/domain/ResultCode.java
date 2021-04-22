@@ -41,6 +41,10 @@ public enum ResultCode implements IResultCode {
      */
     USER_NOT_EXISTS(10002, "用户不存在"),
 
+    USERNAME_PASSWORD_ERROR(10003, "用户名密码错误"),
+
+    INVALID_AUTHORIZATION(10004, "无效授权"),
+
     ;
 
     final int code;

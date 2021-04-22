@@ -1,0 +1,11 @@
+## 数据源配置
+spring:
+  datasource:
+    url: jdbc:mysql://192.168.66.134:3306/springboot-demo?characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+logging:
+  level:
+    demo.springboot: debug
