@@ -1,5 +1,8 @@
 package demo.springboot.config.jwt;
 
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.security.core.authority.AuthorityUtils;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,6 +24,7 @@ public class TokenUtil {
 		param.put(TokenConstant.TOKEN_TYPE, TokenConstant.ACCESS_TOKEN);
 		param.put(TokenConstant.USER_ID, userInfo.getUserId().toString());
 		param.put(TokenConstant.USER_NAME, userInfo.getUserName());
+		param.put(TokenConstant.AUTHORITIES, StringUtils.join(AuthorityUtils.authorityListToSet(userInfo.getAuthorities()), ","));
 
 		TokenInfo accessToken = SecureUtil.createJWT(param, "audience", "issuser", TokenConstant.ACCESS_TOKEN);
 		AuthInfo authInfo = new AuthInfo();
@@ -44,6 +48,8 @@ public class TokenUtil {
 		Map<String, String> param = new HashMap<>(16);
 		param.put(TokenConstant.TOKEN_TYPE, TokenConstant.REFRESH_TOKEN);
 		param.put(TokenConstant.USER_ID, userInfo.getUserId().toString());
+		param.put(TokenConstant.USER_NAME, userInfo.getUserName());
+		param.put(TokenConstant.AUTHORITIES, StringUtils.join(AuthorityUtils.authorityListToSet(userInfo.getAuthorities()), ","));
 		return SecureUtil.createJWT(param, "audience", "issuser", TokenConstant.REFRESH_TOKEN);
 	}
 

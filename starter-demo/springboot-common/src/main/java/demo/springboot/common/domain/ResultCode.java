@@ -45,6 +45,8 @@ public enum ResultCode implements IResultCode {
 
     INVALID_AUTHORIZATION(10004, "无效授权"),
 
+    NO_PERMISSION_EXCEPTION(10005, "权限不足"),
+
     ;
 
     final int code;

@@ -16,6 +16,7 @@ public interface TokenConstant {
     String EXPIRES_IN = "expires_in";
     String USER_ID = "user_id";
     String USER_NAME = "user_name";
+    String AUTHORITIES = "authorities";
     String DEFAULT_AVATAR = "https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png";
     Integer AUTH_LENGTH = 7;
 

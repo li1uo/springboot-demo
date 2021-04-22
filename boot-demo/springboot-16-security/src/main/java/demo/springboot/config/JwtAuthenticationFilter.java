@@ -29,7 +29,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         Authentication authentication = null;
         UserInfo userInfo = SecureUtil.getUser();
         if (Objects.nonNull(userInfo)) {
-            authentication = new UsernamePasswordAuthenticationToken(userInfo.getUserName(), null, new ArrayList<>());
+            authentication = new UsernamePasswordAuthenticationToken(userInfo.getUserName(), null, userInfo.getAuthorities());
         }
 
         if (Objects.isNull(authentication)) {

@@ -6,6 +6,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.security.core.authority.AuthorityUtils;
 
 import javax.crypto.spec.SecretKeySpec;
 import javax.servlet.http.HttpServletRequest;
@@ -66,9 +67,11 @@ public class SecureUtil {
 		}
 		Long userId = Long.valueOf(String.valueOf(claims.get(SecureUtil.USER_ID)));
 		String userName = String.valueOf(claims.get(SecureUtil.USER_NAME));
+		String authorities = String.valueOf(claims.get(TokenConstant.AUTHORITIES));
 		UserInfo user = new UserInfo();
 		user.setUserId(userId);
 		user.setUserName(userName);
+		user.setAuthorities(AuthorityUtils.commaSeparatedStringToAuthorityList(authorities));
 		return user;
 	}
 

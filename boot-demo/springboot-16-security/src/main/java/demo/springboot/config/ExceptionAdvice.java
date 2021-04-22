@@ -7,6 +7,7 @@ import demo.springboot.common.exception.ServiceException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -72,8 +73,21 @@ public class ExceptionAdvice {
      */
     @ResponseStatus(HttpStatus.OK)
     @ExceptionHandler(BadCredentialsException.class)
-    public @ResponseBody Result serviceException(BadCredentialsException e){
+    public @ResponseBody Result badCredentialsException(BadCredentialsException e){
 
         return Result.fail(ResultCode.USERNAME_PASSWORD_ERROR);
+    }
+
+    /**
+     * spring security 没有权限异常
+     *
+     * @param e
+     * @return
+     */
+    @ResponseStatus(HttpStatus.OK)
+    @ExceptionHandler(AccessDeniedException.class)
+    public @ResponseBody Result accessDeniedException(AccessDeniedException e){
+
+        return Result.fail(ResultCode.NO_PERMISSION_EXCEPTION);
     }
 }
