@@ -8,9 +8,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @date 2021/04/20
  */
 @SpringBootApplication
-public class SecurityApplication {
+public class SecurityJwtApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SecurityApplication.class, args);
+		SpringApplication.run(SecurityJwtApplication.class, args);
 	}
 }
