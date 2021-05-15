@@ -1,9 +1,16 @@
 package demo.springboot.controller;
 
+import cn.hutool.core.io.resource.ResourceUtil;
 import demo.springboot.common.domain.Result;
 import demo.springboot.domain.User;
 import lombok.AllArgsConstructor;
+import lombok.SneakyThrows;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
+import org.springframework.jdbc.datasource.init.ScriptUtils;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -49,6 +56,16 @@ public class UserController {
     public @ResponseBody Result exec(){
         // 可使用ScriptUtils执行sql脚本文件
         jdbcTemplate.execute(SQL_BLOCK);
+        return Result.success();
+    }
+
+    @PostMapping("/exec/script")
+    @ResponseBody
+    @SneakyThrows
+    public Result execScript() {
+        // ScriptUtils.executeSqlScript 与ResourceDatabasePopulator.exec均不支持PLSQL块
+        String sql = ResourceUtil.readUtf8Str("script/schema-oracle.sql");
+        jdbcTemplate.execute(sql);
         return Result.success();
     }
 }
