@@ -2,7 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <link href="https://cdn.bootcss.com/element-ui/2.4.5/theme-chalk/index.css" rel="stylesheet">
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
     <title>Vue demo</title>
 </head>
 <body>
@@ -68,7 +69,8 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="webjars/axios/dist/axios.min.js"></script>
 <!-- Actual Vue.js script -->
-<script src="https://cdn.bootcss.com/element-ui/2.4.5/index.js"></script>
+<!-- 引入组件库 -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
 <script>
     var app = new Vue({
         el: '#main',
@@ -91,12 +93,12 @@
                     .then(response => (this.users = response.data.data));
             },
             editUser: function (user) {
-                alert(user.userName);
+                this.$message(user.userName);
             },
             deleteUser: async function (user) {
                 //await axios.delete("/api/v1/users/" + user.id);
                 //this.getUsers();
-                alert(user.userName);
+                this.$message(user.userName);
             },
             handleOpen(key, keyPath) {
                 console.log(key, keyPath);
