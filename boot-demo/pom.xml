@@ -32,6 +32,7 @@
 		<module>springboot-15-vue</module>
 		<module>springboot-16-security</module>
 		<module>springboot-hybrid</module>
+		<module>springboot-test</module>
 	</modules>
 
 	<build>
