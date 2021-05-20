@@ -1,5 +1,6 @@
 package demo.springboot.common.domain;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -29,6 +30,11 @@ public class Result<T> implements Serializable {
      * 数据
      */
     private T data;
+
+    /**
+     * 数据行数
+     */
+    private Integer count;
 
     public Result() {
         this(ResultCode.SUCCESS);
@@ -103,5 +109,12 @@ public class Result<T> implements Serializable {
 
     public static Result status(boolean flag){
         return flag == true ? new Result(ResultCode.SUCCESS) : new Result(ResultCode.PARAMETER_ERROR);
+    }
+
+    public static Result page(IPage page){
+        Result result = new Result(200, "");
+        result.setCount((int)page.getTotal());
+        result.setData(page.getRecords());
+        return result;
     }
 }

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>定时任务日志</title>
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}">
+
+    <script th:src="@{/layui/layui.js}"></script>
+    <script th:src="@{/js/jquery-1.10.1.min.js}" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script th:src="@{/js/moment.js}" src="http://momentjs.cn/downloads/moment.js"></script>
+
+</head>
+<body style="background-color:#f2f2f2;">
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-xs" lay-event="detail">查看日志详情</a>
+</script>
+<div style="margin-left: 10px; margin-right: 10px; margin-top: 20px">
+    <div class="layui-fluid">
+        <div class="layui-card">
+            <div class="layui-card-header layui-form" style="padding-top:15px;padding-bottom:15px;height:auto">
+                <div class="layui-form-item">
+
+                    <div class="layui-inline">
+                        <label class="layui-form-label" style="width: 100px">任务编号</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="taskId" placeholder="请输入任务编号" autocomplete="off" class="layui-input" />
+                        </div>
+                    </div>
+
+                    <div class="layui-inline">
+                        <label class="layui-form-label" style="width: 100px">任务执行状态</label>
+                        <div class="layui-input-inline">
+                            <select name="status">
+                                <option value="">全部</option>
+                                <option value="1">成功</option>
+                                <option value="0">失败</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="layui-inline">
+                        <label class="layui-form-label" style="width: 100px">数据同步状态</label>
+                        <div class="layui-input-inline">
+                            <select name="execStatus">
+                                <option value="">全部</option>
+                                <option value="1">同步成功</option>
+                                <option value="0">未同步数据</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="layui-inline">
+                        <label class="layui-form-label" style="width: 100px">执行时间</label>
+                        <div class="layui-input-inline" style="width: 300px">
+                            <input type="text" class="layui-input" id="createTime" name="createTime" placeholder="" />
+                        </div>
+                    </div>
+
+                    <div class="layui-inline">
+                        <button class="layui-btn" lay-submit="" lay-filter="btn_log_schedule_search">
+                            <span>查询</span>
+                        </button>
+
+                        <button class="layui-btn" lay-submit="" lay-filter="btn_log_schedule_export">
+                            <span>导出日志</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-card-body">
+                <table id="logScheduleTable" lay-filter="logScheduleTable"></table>
+            </div>
+        </div>
+    </div>
+</div>
+<script th:inline="none" type="text/javascript">
+    layui.use(['table', 'form', 'laydate'], function(){
+        var table = layui.table;
+        var form = layui.form;
+        var laydate = layui.laydate;
+
+        // 当前日期
+        var currentTime = moment().format('YYYY-MM-DD 23:59:59');
+        // 最近七天
+        var last7 = moment().format("YYYY-MM-DD 00:00:00");
+
+        table.render({
+            elem: '#logScheduleTable',
+            id: 'logScheduleTable',
+            height: 500,
+            url: '/log/page/data',
+            page: true,
+            cols: [[
+                {field: '', type: 'checkbox', width: '5%', align:"center"},
+                /*{field: '', title: '序号', type: 'numbers', width: '5%', align:"center"},*/
+                {field: 'id', title: 'id', width: '10%', align:"center", hide: true},
+                {field: 'taskId', title: '任务编号', width: '10%', align:"center"},
+                {field: 'status', title: '任务执行状态', width: '10%', align:"center",
+                    templet: function(d){
+                        if (d.status == 1){
+                            return "<span style='color:#3e90b7'>执行成功</span>"
+                        }
+                        return "<span style='color:#ff1269'>执行失败</span>"
+                    }},
+                {field: 'execStatus', title: '数据同步状态', width: '10%', align:"center",
+                    templet: function(d){
+                        if (d.execStatus == 1){
+                            return "<span style='color:#3e90b7'>同步成功</span>"
+                        }
+                        return "<span style='color:#ff1269'>未同步到数据</span>"
+                    }},
+                {field: 'errorMessage', title: '错误日志', align:"center"},
+                {field: 'execTime', title: '执行时间(毫秒)', width: '10%', align:"center"},
+                {field: 'createTime', title: '执行时间', width: '15%', align:"center"},
+                {fixed: 'right', width: '10%', align:'center', toolbar: '#barDemo', align:"center"}
+            ]],
+            request: {
+                pageName: 'page',
+                limitName: 'pageSize'
+            },
+            response: {
+                statusCode: 200
+            },
+            where: {
+                createTime: "" + last7 + " ~ " + currentTime + ""
+            }
+        });
+
+        // 监听头工具栏事件
+        table.on('tool(logScheduleTable)', function(obj){
+            var data = obj.data
+            console.log(data);
+            switch(obj.event){
+                case 'detail':
+                    $.ajax({
+                        type: "get",
+                        url: "/log/data/" + data.id,
+                        dataType: "json",
+                        success: function (result) {
+                            if (result.code == 200) {
+                                var index = layer.open({
+                                    title: '日志详情',
+                                    content: result.data,
+                                    area: ['1000px','500px'],
+                                    btn: []
+                                });
+                            } else {
+                                layer.msg(result.msg, {time: 2000, icon: 0});
+                            }
+                        }, error: function (XmlHttpRequest, textStatus, errorThrown) {
+                            layer.msg("查询日志详情失败", {time: 2000, icon: 0});
+                        }
+                    });
+                    break;
+            };
+        });
+
+        laydate.render({
+            elem: '#createTime',
+            type: 'datetime',
+            range: '~',
+            isInitValue: true,
+            value: "" + last7 + " ~ " + currentTime + "",
+        });
+
+        form.on('submit(btn_log_schedule_search)', function(data){
+            table.reload('logScheduleTable', {
+                where: {
+                    createTime: data.field.createTime,
+                    status: data.field.status,
+                    execStatus: data.field.execStatus,
+                    taskId: data.field.taskId
+                },
+                page: {
+                    curr: 1
+                }
+            })
+            return false;
+        })
+
+        form.on('submit(btn_log_schedule_export)', function(data){
+            var checkStatus = layui.table.checkStatus('logScheduleTable');
+
+            if (checkStatus.data.length == 0) {
+                layer.msg('请选中要导出的数据');
+                return false;
+            }
+
+            var exportDataArray = new Array();
+            checkStatus.data.forEach(function(rowData) {
+                exportDataArray.push(rowData.id);
+            })
+            console.log(JSON.stringify(exportDataArray));
+
+            window.location.href = "/log/export?idStr=" + window.btoa(JSON.stringify(exportDataArray));
+            return false;
+        })
+
+    });
+</script>
+</body>
+</html>

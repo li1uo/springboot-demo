@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="demo.springboot.mapper.LogMapper">
+
+    <sql id="sqlFiled">
+        id, task_id, status, exec_status, error_message, exec_time, create_time, affect_row
+    </sql>
+
+    <select id="page" resultType="demo.springboot.domain.ScheduleLog">
+        select
+        <include refid="sqlFiled"/>
+        from schedule_log
+        <where>
+           <if test="pageDto.taskId != null and pageDto.taskId != ''">
+               and task_id = #{pageDto.taskId}
+           </if>
+            <if test="pageDto.beginTime != null and pageDto.endTime != null">
+               and create_time between #{pageDto.beginTime} and #{pageDto.endTime}
+            </if>
+            <if test="pageDto.status != null">
+                and status = #{pageDto.status}
+            </if>
+            <if test="pageDto.execStatus != null">
+                and exec_status = #{pageDto.execStatus}
+            </if>
+        </where>
+        order by create_time desc
+    </select>
+</mapper>
