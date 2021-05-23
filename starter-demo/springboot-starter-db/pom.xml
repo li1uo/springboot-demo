@@ -33,6 +33,11 @@
         </dependency>
 
         <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>demo.springboot</groupId>
             <artifactId>springboot-starter-tool</artifactId>
             <version>${springboot.demo.version}</version>
